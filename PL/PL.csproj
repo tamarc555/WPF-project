@@ -1,0 +1,79 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <NoWin32Manifest>true</NoWin32Manifest>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>..\bin\</OutputPath>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="addCustomer.png" />
+    <None Remove="addDrone.png" />
+    <None Remove="addParcel.png" />
+    <None Remove="addStation.png" />
+    <None Remove="charge.png" />
+    <None Remove="deleteCustomer.png" />
+    <None Remove="deleteDrone.png" />
+    <None Remove="deleteParcel.png" />
+    <None Remove="deleteStation.png" />
+    <None Remove="drone with parcel.png" />
+    <None Remove="drone.png" />
+    <None Remove="group.png" />
+    <None Remove="menu.png" />
+    <None Remove="openParcel.png" />
+    <None Remove="parcel.png" />
+    <None Remove="plus.png" />
+    <None Remove="reset.png" />
+    <None Remove="sender.png" />
+    <None Remove="target.png" />
+    <None Remove="update.png" />
+    <None Remove="v.png" />
+    <None Remove="x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BL\BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="addCustomer.png" />
+    <Resource Include="addDrone.png" />
+    <Resource Include="addParcel.png" />
+    <Resource Include="addStation.png" />
+    <Resource Include="charge.png" />
+    <Resource Include="deleteCustomer.png" />
+    <Resource Include="deleteDrone.png" />
+    <Resource Include="deleteParcel.png" />
+    <Resource Include="deleteStation.png" />
+    <Resource Include="drone with parcel.png" />
+    <Resource Include="drone.png" />
+    <Resource Include="group.png" />
+    <Resource Include="menu.png" />
+    <Resource Include="openParcel.png" />
+    <Resource Include="parcel.png" />
+    <Resource Include="plus.png" />
+    <Resource Include="reset.png" />
+    <Resource Include="sender.png" />
+    <Resource Include="target.png" />
+    <Resource Include="update.png" />
+    <Resource Include="v.png" />
+    <Resource Include="x.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="addDroneWindow.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="listOfDrone.xaml">
+      <XamlRuntime>$(DefaultXamlRuntime)</XamlRuntime>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+
+</Project>

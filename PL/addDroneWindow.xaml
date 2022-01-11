@@ -1,0 +1,155 @@
+﻿<Window x:Class="PL.addDroneWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PL"
+        mc:Ignorable="d"
+        Title="addDroneWindow" Height="485" Width="379">
+    <Grid Margin="0,0,0,36">
+
+        <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Battary:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="battaryTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Battary, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+
+            <Label Content="Drone Location:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="droneLocationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding DroneLocation, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+
+            <Label Content="ID:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="iDTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding ID, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+
+
+            <Label Content="Max Weigth:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <!-- <ComboBox x:Name="maxWeigthComboBox" Grid.Column="1" DisplayMemberPath="MaxWeigth" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120" SelectionChanged="maxWeigthComboBox_SelectionChanged">
+            <ComboBox.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <VirtualizingStackPanel/>
+                </ItemsPanelTemplate>
+            </ComboBox.ItemsPanel>-->
+            <ComboBox x:Name="maxWeigthComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120" SelectionChanged="maxWeigthComboBox_SelectionChanged">
+            </ComboBox>
+
+            <Label Content="Model:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="modelTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Parcel In Delivery:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+            <TextBox x:Name="parcelInDeliveryTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding ParcelInDelivery, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Status Of Drone:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+            <ComboBox x:Name="statusOfDroneComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="120">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
+            </ComboBox>
+            <!--DisplayMemberPath="StatusOfDrone"-->
+        </Grid>
+
+
+        <Grid ShowGridLines="False" Margin="5,0,5,0" Height="474" VerticalAlignment="Top">
+            <!--<Grid.RowDefinitions>
+            <RowDefinition Height="3*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="2*" />
+            <RowDefinition Height="10*" />
+        </Grid.RowDefinitions>-->
+            <!--<Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1.5*" />
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="3*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>-->
+            <!--<TextBox x:Name="IdBox" Grid.Column="2" HorizontalAlignment="Center" Height="20" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Center" Width="135" TextChanged="IdBox_TextChanged"/>
+        <TextBox x:Name="BattaryBox" Grid.Column="2" HorizontalAlignment="Center" Height="20" Grid.Row="3" TextWrapping="Wrap" VerticalAlignment="Center" Width="135"/>
+        <ComboBox x:Name="WeightBox" Grid.Column="2" HorizontalAlignment="Center" Height="20" Grid.Row="5" VerticalAlignment="Center" Width="135" SelectionChanged="WeightBox_SelectionChanged"/>
+        <TextBox x:Name="ModelBox" Grid.Column="2" HorizontalAlignment="Center" Height="20" Grid.Row="7" TextWrapping="Wrap" VerticalAlignment="Center" Width="135" TextChanged="ModelBox_TextChanged"/>
+        <ComboBox x:Name="StatusBox" Grid.Column="2" HorizontalAlignment="Center" Height="20" Grid.Row="9" VerticalAlignment="Center" Width="135"/>
+        <TextBox x:Name="DelieveryBox" Grid.Column="2" HorizontalAlignment="Center" Height="20" Grid.Row="11" TextWrapping="Wrap" VerticalAlignment="Center" Width="135" TextChanged="DelieveryBox_TextChanged" Text="0"/>
+        <TextBox x:Name="LongitudeBox" Grid.Column="2" HorizontalAlignment="Center" Height="20" Grid.Row="13" TextWrapping="Wrap" VerticalAlignment="Center" Width="135"/>
+        <TextBox x:Name="LatitudeBox" Grid.Column="2" HorizontalAlignment="Center" Height="20" Grid.Row="15" TextWrapping="Wrap" VerticalAlignment="Center" Width="135"/>
+        <Label x:Name="IDText" Content="ID:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="1" VerticalAlignment="Center" Width="94"/>
+        <Label x:Name="BattaryText" Content="Battary:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="3" VerticalAlignment="Center" Width="94"/>
+        <Label x:Name="WeightText" Content="Weight:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="5" VerticalAlignment="Center" Width="94"/>
+        <Label x:Name="ModelText" Content="Model:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="7" VerticalAlignment="Center" Width="94"/>
+        <Label x:Name="StatusText" Content="Status:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="9" VerticalAlignment="Center" Width="94"/>
+        <Label x:Name="DelieveryText" Content="Delievery:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="11" VerticalAlignment="Center" Width="94"/>
+        <Label x:Name="LongitudeText" Content="Longitude:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="13" VerticalAlignment="Center" Width="94"/>
+        <Label x:Name="LatitudeText" Content="Latitude:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="15" VerticalAlignment="Center" Width="94"/>-->
+
+            <Button x:Name="updateButton" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="44" Background="White" BorderBrush="White" Click="Button_Click" Margin="292,332,0,0">
+                <StackPanel x:Name="updateImage" Height="40" Width="40">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/update.png"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <Button x:Name="closeButton" HorizontalAlignment="Left" Height="35" Margin="4,5,0,0" VerticalAlignment="Top" Width="35" Background="White" BorderBrush="White" Click="Button_Click_6">
+                <StackPanel Height="30" Width="30">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/x.png"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ChargeButton" HorizontalAlignment="Left" Height="45" Margin="174,334,0,0" VerticalAlignment="Top" Width="44" Background="White" BorderBrush="White" Click="Button_Click_2">
+                <StackPanel x:Name="chargeImage" Height="40" Width="40">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/charge.png"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <Button x:Name="ParcelButton" HorizontalAlignment="Left" Height="45" Margin="236,334,0,0" VerticalAlignment="Top" Width="44" Background="White" BorderBrush="White" Click="Button_Click_3">
+                <StackPanel Height="40" Width="40">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/drone with parcel.png"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <Button x:Name="plusButton" HorizontalAlignment="Left" Height="44" Margin="290,315,0,0" VerticalAlignment="Top" Width="47" Background="White" BorderBrush="White" Click="Button_Click_1">
+                <StackPanel x:Name="plusImage" Height="40" Width="40">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/plus.png"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <TextBox x:Name="timeInChargeBox" HorizontalAlignment="Left" Height="22" Margin="171,384,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="47" TextChanged="timeInChargeBox_TextChanged"/>
+            <Label x:Name="timeInChargeText" Content="Enter time in charge:" HorizontalAlignment="Left" Height="28" Margin="45,381,0,0" VerticalAlignment="Top" Width="121"/>
+            <Button x:Name="vButton" HorizontalAlignment="Left" Height="20" Margin="224,385,0,0" VerticalAlignment="Top" Width="28" Background="White" BorderBrush="White" Click="vButton_Click">
+                <StackPanel x:Name="vImage" Height="20" Width="25">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/v.png"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <Button x:Name="automatic" Content="Button" HorizontalAlignment="Left" Height="37" Margin="67,322,0,0" VerticalAlignment="Top" Width="39" Click="automatic_Click"/>
+            <Button x:Name="manualButton" Content="Button" HorizontalAlignment="Left" Height="48" Margin="5,289,0,0" VerticalAlignment="Top" Width="34" Click="manualButton_Click"/>
+
+        </Grid>
+    </Grid>
+</Window>
