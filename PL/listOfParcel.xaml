@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="listOfParcel" Height="450" Width="450">
-    <Grid Margin="0,-3,0,3" Background="#FFBCDBDD">
+    <Grid Margin="0,-3,0,3" Background="#FFDCF2EF">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="59*"/>
             <ColumnDefinition Width="166*"/>

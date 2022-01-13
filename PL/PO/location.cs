@@ -11,7 +11,6 @@ namespace PO
         public double longitude;
         public double latitude;
 
-
         public location(double _longitude = 0, double _latitude = 0)
         {
             longitude = _longitude;
@@ -52,7 +51,7 @@ namespace PO
                 return $"{deg}° {min}' {sec}'' {ch}";
             }
 
-            return lat() + "+" + log();
+            return log() + "+" + lat();
         }
     }
 }

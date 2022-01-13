@@ -25,6 +25,7 @@
     <None Remove="drone.png" />
     <None Remove="dronesDelivers.png" />
     <None Remove="group.png" />
+    <None Remove="hoursWin.png" />
     <None Remove="IsraelMap.png" />
     <None Remove="location.png" />
     <None Remove="managerOpening.png" />
@@ -68,6 +69,7 @@
     <Resource Include="drone.png" />
     <Resource Include="dronesDelivers.png" />
     <Resource Include="group.png" />
+    <Resource Include="hoursWin.png" />
     <Resource Include="IsraelMap.png" />
     <Resource Include="location.png" />
     <Resource Include="managerOpening.png" />

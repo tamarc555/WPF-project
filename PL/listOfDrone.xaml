@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="listOfDrone" Height="450" Width="800">
-    <Grid Background="#FFBCDBDD">
+    <Grid Background="#FFDCF2EF">
         <DataGrid x:Name="droneToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="48,70,78.6,49" RowDetailsVisibilityMode="VisibleWhenSelected">
 
             <DataGrid.Resources>

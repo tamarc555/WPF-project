@@ -26,7 +26,7 @@ namespace PL
         public LocationWindow(double myLat, double myLon)
         {
             InitializeComponent();
-            webBrowser.Source = new Uri("https://www.google.com/maps/place/" + myLat + "," + myLon);
+            webBrowser.Source = new Uri("https://www.google.com/maps/place/" + myLon + "," + myLat);
            // webBrowser.NavigateToString("https://www.google.com/maps/place/" + myLat + ","+ myLon);
         }
 

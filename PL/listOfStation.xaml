@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="listOfStation" Height="450" Width="450">
-    <Grid Margin="0,-3,0,3" Background="#FFBCDBDD">
+    <Grid Margin="0,-3,0,3" Background="#FFDCF2EF">
         <DataGrid x:Name="stationToListDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="53,64,64,180" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridCell}">
