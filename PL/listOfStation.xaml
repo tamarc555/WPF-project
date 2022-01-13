@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="listOfStation" Height="450" Width="450">
-    <Grid Margin="0,-3,0,3">
+    <Grid Margin="0,-3,0,3" Background="#FFBCDBDD">
         <DataGrid x:Name="stationToListDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="53,64,64,180" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridCell}">
@@ -20,7 +20,7 @@
                 <DataGridTextColumn x:Name="numOfNotAvalibleChargeSlotColumn" Width="SizeToHeader" Header="Not Avalible Charge Slot" Binding="{Binding NumOfNotAvalibleChargeSlot}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button HorizontalAlignment="Left" Margin="144,315,0,0" VerticalAlignment="Top" Background="White" BorderBrush="White" Height="65" Width="60" Click="Button_Click">
+        <Button HorizontalAlignment="Left" Margin="144,315,0,0" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" Height="65" Width="60" Click="Button_Click">
             <StackPanel x:Name="addStationButton" Height="60" Width="56">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/addStation.png"/>
@@ -36,22 +36,6 @@
 
 
         </Button>
-        <Button x:Name="groupButtun" HorizontalAlignment="Left" Height="32" Margin="383,61,0,0" VerticalAlignment="Top" Width="30" Background="{x:Null}" BorderBrush="{x:Null}" Click="groupButtun_Click">
-            <StackPanel Height="30" RenderTransformOrigin="0.5,0.5" Width="23">
-                <StackPanel.Background>
-                    <ImageBrush ImageSource="/group.png"/>
-                </StackPanel.Background>
-                <StackPanel.RenderTransform>
-                    <TransformGroup>
-                        <ScaleTransform ScaleX="-1" ScaleY="-1"/>
-                        <SkewTransform/>
-                        <RotateTransform/>
-                        <TranslateTransform/>
-                    </TransformGroup>
-                </StackPanel.RenderTransform>
-            </StackPanel>
-        </Button>
-
-
+        
     </Grid>
 </Window>

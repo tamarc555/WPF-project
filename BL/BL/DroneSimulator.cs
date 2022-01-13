@@ -18,6 +18,7 @@ namespace BL
             var myDrone = bl.getPartOfDrone(x => x.ID == ID).FirstOrDefault();
             int parcelID = 0;
             int stationID = 0;
+            bool flag = true;
             //Station bs = null;
             //double myDistance = 0.0;
             //int battaruUsage = 0;
@@ -42,6 +43,8 @@ namespace BL
                         switch (parcelID, myDrone.Battary)
                         {
                             case (0, 100):  //שוחרר מטעינה אבל אין חבילה
+                                //סיום תהליכון כפוי
+                                flag = false;
                                 break;
                             case (0, _):  //פנוי ואין חבילה - שליחה לטעינה
                                 stationID = bl.findClosestStation(myDrone);
@@ -59,14 +62,15 @@ namespace BL
                         break;
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.maintenance }:
                         Thread.Sleep(1000);
-                        switch (myDrone.Battary)
-                        {
-                            case (100):  //הרחפן טעון- שחרור
-                                bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
-                                break;
-                            case (_):  //הרחפן לא הגיע ל100%
-                                break;
-                        }
+                        bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
+                        //switch (myDrone.Battary)
+                        //{
+                        //    case (100):  //הרחפן טעון- שחרור
+                        //        bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
+                        //        break;
+                        //    case (_):  //הרחפן לא הגיע ל100%
+                        //        break;
+                        //}
                         break;
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.delivery }:
                         Thread.Sleep(1000);
@@ -85,7 +89,7 @@ namespace BL
                 }
                 update();
                 Thread.Sleep(1000);
-            } while (!checkStop());
+            } while (!checkStop()&&flag);
         }
 
 
