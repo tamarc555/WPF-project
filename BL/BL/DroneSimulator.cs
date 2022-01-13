@@ -38,7 +38,7 @@ namespace BL
                 switch (myDrone)
                 {
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.available }:
-                        Thread.Sleep(1000);
+                      //  Thread.Sleep(1000);
                         parcelID = bl.nextParcel(myDrone);
                         switch (parcelID, myDrone.Battary)
                         {
@@ -57,11 +57,11 @@ namespace BL
                         }
                         break;
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.scheduled }:
-                        Thread.Sleep(1000);
+                      //  Thread.Sleep(1000);
                         bl.updatePickedUp(bl.getDrone(myDrone.ID));
                         break;
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.maintenance }:
-                        Thread.Sleep(1000);
+                      //  Thread.Sleep(1000);
                         bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
                         //switch (myDrone.Battary)
                         //{
@@ -73,7 +73,7 @@ namespace BL
                         //}
                         break;
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.delivery }:
-                        Thread.Sleep(1000);
+                      //  Thread.Sleep(1000);
                         switch (myDrone.ParcelInDelivery.StatusOfParcel)
                         {
                             case (false):  //החבילה עוד לא נאספה
@@ -87,8 +87,8 @@ namespace BL
                     default:
                         throw new Exception("ERROR");
                 }
+               // Thread.Sleep(1000);
                 update();
-                Thread.Sleep(1000);
             } while (!checkStop()&&flag);
         }
 

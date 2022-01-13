@@ -469,8 +469,8 @@ namespace BL
         {
             try
             {
-                lock (dal)
-                {
+                //lock (dal)
+                //{
 
                     tempDrone = getDrone(tempDrone.ID);
                     if (tempDrone.StatusOfDrone != DroneStatuses.maintenance) throw new IDdoesntExists("this drone is not in charge\n");
@@ -486,7 +486,8 @@ namespace BL
                         }
                     tempStation.ChargeSlots++;
                     dal.updateStation(tempStation);
-                }
+                double x = listDrone[2].Battary;
+                //}
 
             }
             catch (Exception ex)

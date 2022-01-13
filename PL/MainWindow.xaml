@@ -6,27 +6,28 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="MainWindow" Height="640" Width="800">
+    <Window.Resources>
+        <Visibility x:Key="myBorder">Visible</Visibility>
+    </Window.Resources>
     <Grid Name="MainGrid" Background="#FFBCDBDD">
         <Grid.RowDefinitions>
             <RowDefinition Height="50*"/>
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
-        <Grid Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
+        <Border BorderThickness="1" HorizontalAlignment="Left" Height="554" Margin="750,0,0,0" VerticalAlignment="Center" Width="50" Background="White" Grid.Row="1"/>
+        <Border x:Name="myBorder" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="554" Margin="619,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="181" Background="White">
+        </Border>
+
+        <Grid x:Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
          VerticalAlignment="Stretch" Width="auto" Background="#FF556249">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
-            </Grid.ColumnDefinitions >
-            <Button HorizontalAlignment="Left" Height="39" Margin="125,13,0,0" VerticalAlignment="Top" Width="560" Background="{x:Null}" BorderBrush="{x:Null}" Grid.ColumnSpan="4">
-                <StackPanel Height="39" Width="489">
-                    <StackPanel.Background>
-                        <ImageBrush ImageSource="/dronesDelivers.png"/>
-                    </StackPanel.Background>
-                </StackPanel>
-            </Button>
-            <Button x:Name="exitButton" Grid.Column="3" HorizontalAlignment="Left" Height="40" Margin="142,0,0,0" VerticalAlignment="Center" Width="44" BorderBrush="{x:Null}" Click="exitButton_Click" Background="{x:Null}">
+            </Grid.ColumnDefinitions>
+            <Button HorizontalAlignment="Center" Height="39" VerticalAlignment="Center" Width="560" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="2" Click="Button_Click_5"/>
+            <Button x:Name="exitButton" HorizontalAlignment="Left" Height="40" VerticalAlignment="Center" Width="44" BorderBrush="{x:Null}" Click="exitButton_Click" Background="{x:Null}" Margin="10,0,0,0">
 
                 <StackPanel Height="34" Width="34">
                     <StackPanel.Background>
@@ -35,26 +36,115 @@
                 </StackPanel>
             </Button>
         </Grid>
-        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="555" Margin="562,0,0,0" VerticalAlignment="Center" Width="256" Background="#FF47818E" Grid.Row="1"/>
-        <Button Content="רשימת חבילות" HorizontalAlignment="Left" Height="40" Margin="622,178,0,0" Grid.Row="1" VerticalAlignment="Top" Width="168" Click="Button_Click_3"/>
-        <Button Content="רשימת לקוחות" HorizontalAlignment="Left" Height="40" Margin="632,83,0,0" Grid.Row="1" VerticalAlignment="Top" Width="148" Click="Button_Click_2"/>
-        <Button Content="רשימת רחפנים" HorizontalAlignment="Left" Height="40" Margin="632,278,0,0" VerticalAlignment="Top" Width="88" Click="Button_Click" Grid.Row="1"/>
-        <Button Content="רשימת תחנות" HorizontalAlignment="Left" Margin="608,375,0,0" Grid.Row="1" VerticalAlignment="Top" Height="40" Width="155" Click="Button_Click_1"/>
+        <Button HorizontalAlignment="Left" Height="90" Margin="430,158,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Click="Button_Click_3" Background="#FFBCDBDD">
+            <StackPanel Height="80" Width="80">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/parcel.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button HorizontalAlignment="Left" Height="90" Margin="400,55,0,0" Grid.Row="1" VerticalAlignment="Top" Width="100" Click="Button_Click_2" Background="#FFBCDBDD">
+            <StackPanel Height="80" Width="80">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/customer.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button HorizontalAlignment="Left" Height="90" Margin="428,278,0,0" VerticalAlignment="Top" Width="100" Click="Button_Click" Grid.Row="1" Background="#FFBCDBDD">
+            <StackPanel Height="80" Width="80">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/drone.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button HorizontalAlignment="Left" Margin="408,396,0,0" Grid.Row="1" VerticalAlignment="Top" Height="90" Width="100" Click="Button_Click_1" Background="#FFBCDBDD">
+            <StackPanel Height="80" Width="80">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/station.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="22" Margin="20,57,0,0" Grid.Row="1" VerticalAlignment="Top" Width="202" Background="#FFFEFEFE" Opacity="0.75">
             <TextBlock HorizontalAlignment="Center" Height="22" TextWrapping="Wrap" VerticalAlignment="Center" Width="202" TextAlignment="Center" Background="#FFF3DC90"><Run FontWeight="Bold" Text="כניסה לממשק ניהול לקוחות"/></TextBlock>
         </Border>
         <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="188" Margin="20,79,0,0" Grid.Row="1" VerticalAlignment="Top" Width="202" Background="White" Opacity="0.75">
-            <Button x:Name="ManagerLogin" Content="המשך" HorizontalAlignment="Left" Height="19" Margin="44,133,0,0" VerticalAlignment="Top" Width="118" Background="#FFC8C9D0"/>
+            <Button x:Name="ManagerLogin" Content="המשך" HorizontalAlignment="Left" Height="19" Margin="44,133,0,0" VerticalAlignment="Top" Width="118" Background="#FFC8C9D0" Click="ManagerLogin_Click"/>
         </Border>
-        <TextBox HorizontalAlignment="Left" Height="20" Margin="61,125,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black"/>
-        <PasswordBox HorizontalAlignment="Left" Height="20" Margin="61,173,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionTextBrush="Black" BorderBrush="Black"/>
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="20" Margin="61,125,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black" TextChanged="NameTextBox_TextChanged"/>
+        <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="20" Margin="61,173,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionTextBrush="Black" BorderBrush="Black"/>
         <TextBlock HorizontalAlignment="Left" Height="18" Margin="61,153,0,0" Grid.Row="1" Text=":סיסמא" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Right"/>
         <TextBlock HorizontalAlignment="Left" Height="20" Margin="61,103,0,0" Grid.Row="1" Text=":שם משתמש" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Right"/>
-        <Border BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="555" Margin="247,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="315">
-            <Border.Background>
-                <ImageBrush ImageSource="/mapsWithLocation.png"/>
-            </Border.Background>
-        </Border>
+        <Button x:Name="exitManagment" Content="צא ממצב מנהל" HorizontalAlignment="Left" Height="19" Margin="63,213,0,0" Grid.Row="1" VerticalAlignment="Top" Width="118" Click="Button_Click_4"/>
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}" Click="Button_Click_7">
+            <StackPanel Height="35" Width="144">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/home.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
+            <StackPanel Height="32" Width="34">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/menu.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,77,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
+            <StackPanel Height="35" Width="143">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/maakav.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
+            <StackPanel Height="32" Width="34">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/menu.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,111,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}" Click="Button_Click_8">
+            <StackPanel Height="35" Width="153">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/hours.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
+            <StackPanel Height="32" Width="34">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/menu.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,146,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
+            <StackPanel Height="35" Width="109">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/connect.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
+            <StackPanel Height="32" Width="34">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/menu.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,181,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
+            <StackPanel Height="35" Width="119">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/out.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
+            <StackPanel Height="32" Width="34">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/menu.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
 
     </Grid>
 </Window>

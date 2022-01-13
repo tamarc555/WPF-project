@@ -28,6 +28,7 @@ namespace PL
         // private ObservableCollection<BlApi.BO.DroneToList> _myCollection = new ObservableCollection<BlApi.BO.DroneToList>();
        // public event PropertyChangedEventHandler PropertyChanged;
         private BlApi.IBL bl;
+        bool _myFlag = false;
         ObservableCollection<BlApi.BO.DroneToList> _myCollection = new ObservableCollection<BlApi.BO.DroneToList>();
         //static readonly BlApi.IBL bl = BlApi.BlFactory.GetBl();
         //ObservableCollection<BlApi.BO.DroneToList> _myCollection = new(bl.getListDroneToList());
@@ -45,9 +46,10 @@ namespace PL
             InitializeComponent();
         }
 
-        public listOfDrone(BlApi.IBL bL)
+        public listOfDrone(BlApi.IBL bL, bool myFlag)
         {
             InitializeComponent();
+            _myFlag = myFlag;
             bl = bL;
             List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
             for (int i = 0; i < lst.Count; i++)
@@ -61,6 +63,11 @@ namespace PL
             droneToListDataGrid.IsReadOnly = true;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             weightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            if (myFlag == false)
+            {
+                deleteButton.Visibility = Visibility.Hidden;
+                addDrone.Visibility = Visibility.Hidden;
+            }
         }
 
 
@@ -182,14 +189,17 @@ namespace PL
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DataGridCell cell = sender as DataGridCell;
-            DroneToList d = cell.DataContext as DroneToList;
-            new addDroneWindow(bl, d.ID).ShowDialog();
-            _myCollection.Clear();
-            List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
-            for (int i = 0; i < lst.Count; i++)
-                _myCollection.Add(lst[i]);
-            /*droneToListDataGrid.ItemsSource = bl.getListDroneToList();*/
+            if (_myFlag == true)
+            {
+                DataGridCell cell = sender as DataGridCell;
+                DroneToList d = cell.DataContext as DroneToList;
+                new addDroneWindow(bl, d.ID).ShowDialog();
+                _myCollection.Clear();
+                List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
+                for (int i = 0; i < lst.Count; i++)
+                    _myCollection.Add(lst[i]);
+                /*droneToListDataGrid.ItemsSource = bl.getListDroneToList();*/
+            }
 
         }
 

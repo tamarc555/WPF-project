@@ -23,7 +23,7 @@ namespace PL
     public partial class listOfCustomer : Window
     {
         private ObservableCollection<BlApi.BO.CustomerToList> _myCollection = new ObservableCollection<BlApi.BO.CustomerToList>();
-
+        bool _myFlag;
         private BlApi.IBL bl;
 
         public listOfCustomer()
@@ -32,8 +32,9 @@ namespace PL
         }
 
         
-        public listOfCustomer(BlApi.IBL bL)
+        public listOfCustomer(BlApi.IBL bL, bool myFlag)
         {
+            _myFlag = myFlag;
             InitializeComponent();
             bl = bL;
             List<BlApi.BO.CustomerToList> lst = (List<BlApi.BO.CustomerToList>)bl.getListCustomerToList();
@@ -41,14 +42,22 @@ namespace PL
                 _myCollection.Add(lst[i]);
             customerToListDataGrid.DataContext = _myCollection;
             customerToListDataGrid.IsReadOnly = true;
+            if (myFlag == false)
+            {
+                addButton.Visibility = Visibility.Hidden;
+                deleteButton.Visibility = Visibility.Hidden;
+            }
         }
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            DataGridCell cell = sender as DataGridCell;
-            BlApi.BO.CustomerToList d = cell.DataContext as BlApi.BO.CustomerToList;
-            new customerWindow(bl, d.ID).ShowDialog();
-            customerToListDataGrid.ItemsSource = bl.getListCustomerToList();
+            if (_myFlag == true)
+            {
+                DataGridCell cell = sender as DataGridCell;
+                BlApi.BO.CustomerToList d = cell.DataContext as BlApi.BO.CustomerToList;
+                new customerWindow(bl, d.ID).ShowDialog();
+                customerToListDataGrid.ItemsSource = bl.getListCustomerToList();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)  //add
