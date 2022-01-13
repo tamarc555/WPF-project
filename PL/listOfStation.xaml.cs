@@ -23,30 +23,38 @@ namespace PL
     public partial class listOfStation : Window
     {
         private ObservableCollection<BlApi.BO.StationToList> _myCollection = new ObservableCollection<BlApi.BO.StationToList>();
-
+        bool myFlag = false;
         private BlApi.IBL bl;
         public listOfStation()
         {
             InitializeComponent();
 
         }
-        public listOfStation(BlApi.IBL bL)
+        public listOfStation(BlApi.IBL bL, bool flag)
         {
             InitializeComponent();
+            myFlag = flag;
             bl = bL;
             List<BlApi.BO.StationToList> lst = (List<BlApi.BO.StationToList>)bl.getListStationToList();
             for (int i = 0; i < lst.Count; i++)
                 _myCollection.Add(lst[i]);
             stationToListDataGrid.DataContext = _myCollection;
             stationToListDataGrid.IsReadOnly = true;
+            if(flag == false)
+            {
+                addButton.Visibility = Visibility.Hidden;
+                deleteStation.Visibility = Visibility.Hidden;
+            }
         }
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
-            DataGridCell cell = sender as DataGridCell;
-            StationToList d = cell.DataContext as StationToList;
-            new stationWindow(bl, d.ID).ShowDialog();
-            stationToListDataGrid.ItemsSource = bl.getListStationToList();
+            if (myFlag == true)
+            {
+                DataGridCell cell = sender as DataGridCell;
+                StationToList d = cell.DataContext as StationToList;
+                new stationWindow(bl, d.ID).ShowDialog();
+                stationToListDataGrid.ItemsSource = bl.getListStationToList();
+            }
         }
 
         private void deleteStation_Click(object sender, RoutedEventArgs e)

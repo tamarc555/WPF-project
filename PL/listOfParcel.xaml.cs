@@ -32,7 +32,7 @@ namespace PL
             InitializeComponent();
         }
 
-        public listOfParcel(BlApi.IBL bL)
+        public listOfParcel(BlApi.IBL bL, bool myFlag)
         {
             InitializeComponent();
             bl = bL;
@@ -44,6 +44,11 @@ namespace PL
             senderButton.Visibility = Visibility.Hidden;
             targetButton.Visibility = Visibility.Hidden;
             droneButton.Visibility = Visibility.Hidden;
+            if(myFlag==false)
+            {
+                addButton.Visibility = Visibility.Hidden;
+                deleteButton.Visibility = Visibility.Hidden;
+            }
         }
 
         //private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)

@@ -17,6 +17,8 @@
     <None Remove="addParcel.png" />
     <None Remove="addStation.png" />
     <None Remove="charge.png" />
+    <None Remove="connect.png" />
+    <None Remove="customer.png" />
     <None Remove="deleteCustomer.png" />
     <None Remove="deleteDrone.png" />
     <None Remove="deleteParcel.png" />
@@ -25,8 +27,11 @@
     <None Remove="drone.png" />
     <None Remove="dronesDelivers.png" />
     <None Remove="group.png" />
+    <None Remove="home.png" />
+    <None Remove="hours.png" />
     <None Remove="IsraelMap.png" />
     <None Remove="location.png" />
+    <None Remove="maakav.png" />
     <None Remove="managerOpening.png" />
     <None Remove="mapOfIsrael.PNG" />
     <None Remove="mapsWithLocation.png" />
@@ -34,6 +39,7 @@
     <None Remove="off.png" />
     <None Remove="off2.png" />
     <None Remove="openParcel.png" />
+    <None Remove="out.png" />
     <None Remove="parcel.png" />
     <None Remove="pause.png" />
     <None Remove="play.png" />
@@ -41,6 +47,7 @@
     <None Remove="reset.png" />
     <None Remove="return.png" />
     <None Remove="sender.png" />
+    <None Remove="station.png" />
     <None Remove="target.png" />
     <None Remove="update.png" />
     <None Remove="v.png" />
@@ -60,6 +67,8 @@
     <Resource Include="addParcel.png" />
     <Resource Include="addStation.png" />
     <Resource Include="charge.png" />
+    <Resource Include="connect.png" />
+    <Resource Include="customer.png" />
     <Resource Include="deleteCustomer.png" />
     <Resource Include="deleteDrone.png" />
     <Resource Include="deleteParcel.png" />
@@ -68,8 +77,11 @@
     <Resource Include="drone.png" />
     <Resource Include="dronesDelivers.png" />
     <Resource Include="group.png" />
+    <Resource Include="home.png" />
+    <Resource Include="hours.png" />
     <Resource Include="IsraelMap.png" />
     <Resource Include="location.png" />
+    <Resource Include="maakav.png" />
     <Resource Include="managerOpening.png" />
     <Resource Include="mapOfIsrael.PNG" />
     <Resource Include="mapsWithLocation.png" />
@@ -77,6 +89,7 @@
     <Resource Include="off.png" />
     <Resource Include="off2.png" />
     <Resource Include="openParcel.png" />
+    <Resource Include="out.png" />
     <Resource Include="parcel.png" />
     <Resource Include="pause.png" />
     <Resource Include="play.png" />
@@ -84,6 +97,7 @@
     <Resource Include="reset.png" />
     <Resource Include="return.png" />
     <Resource Include="sender.png" />
+    <Resource Include="station.png" />
     <Resource Include="target.png" />
     <Resource Include="update.png" />
     <Resource Include="v.png" />

@@ -312,6 +312,9 @@ namespace PL
             Auto = false;
             Worker = null;
             MessageBox.Show("התהליך האוטומטי הושלם");
+            BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
+            PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
+            DataContext = d;
             if (Closing) Close();
         }
 
@@ -339,13 +342,15 @@ namespace PL
         {
             //    lock(bl)
             ////    {
+
             //Drone tempD = bl.getDrone((int)e.ProgressPercentage);
             BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
+
             PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
             DataContext = d;
             //Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
             //DataContext = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
-            Thread.Sleep(1000);    
+            //Thread.Sleep(1000);    
             updateFlags(tempD);
                 //this.setAndNotify(PropertyChanged, nameof(Drone), out tempD, tempD);
           //  }
