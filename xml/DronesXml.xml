@@ -15,4 +15,9 @@
     <Model>A-9k</Model>
     <MaxWeigth>heavy</MaxWeigth>
   </Drone>
+  <Drone>
+    <ID>4</ID>
+    <Model>TH-9</Model>
+    <MaxWeigth>medium</MaxWeigth>
+  </Drone>
 </ArrayOfDrone>

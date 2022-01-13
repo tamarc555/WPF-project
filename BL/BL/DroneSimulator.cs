@@ -33,6 +33,7 @@ namespace BL
             //}
             do
             {
+                
                 switch (myDrone)
                 {
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.available }:
@@ -51,6 +52,10 @@ namespace BL
                                 bl.updateScheduled(bl.getDrone(myDrone.ID));
                                 break;
                         }
+                        break;
+                    case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.scheduled }:
+                        Thread.Sleep(1000);
+                        bl.updatePickedUp(bl.getDrone(myDrone.ID));
                         break;
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.maintenance }:
                         Thread.Sleep(1000);
@@ -78,7 +83,8 @@ namespace BL
                     default:
                         throw new Exception("ERROR");
                 }
-
+                update();
+                Thread.Sleep(1000);
             } while (!checkStop());
         }
 

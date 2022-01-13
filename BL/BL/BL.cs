@@ -35,7 +35,7 @@ namespace BL
         {
             lock (dal)
             {
-
+                //bool flag = false;
                 foreach (var drone in dal.getListDrone())
                 {
                     //listDrone.Add(new DroneToList { ID = drone.ID, Model = drone.Model, MaxWeigth = (WeightCategories)drone.MaxWeigth });
@@ -46,9 +46,45 @@ namespace BL
                     droneToUpdate.Model = drone.Model;
                     droneToUpdate.MaxWeigth = (WeightCategories)drone.MaxWeigth;
                     droneToUpdate.Battary = r.Next(20, 40);
-                    droneToUpdate.StatusOfDrone = DroneStatuses.available;
-                    droneToUpdate.DroneLocation = new location(r.NextDouble() * (33.5 - 29.3) + 29.3, r.NextDouble() * (36.3 - 33.7) + 33.7);
-                    listDrone.Add(droneToUpdate);
+                    var myParcel = (from parcel in getListParcel()
+                                    where parcel.TheDroneInParcel.ID == droneToUpdate.ID && parcel.Delivered == null
+                                    select parcel).FirstOrDefault();
+                    if (myParcel!=null)
+                    {
+                        if (myParcel.PickedUp != null)
+                        {
+                            droneToUpdate.StatusOfDrone = DroneStatuses.delivery;
+                            droneToUpdate.DroneLocation = getCustomer(myParcel.Target.ID).CustomerLocation;
+                            droneToUpdate.ParcelInDelivery = new ParcelInDelivery(myParcel.ID, true, myParcel.Priority, myParcel.Weight, myParcel.Sender, myParcel.Target, getCustomer(myParcel.Sender.ID).CustomerLocation, getCustomer(myParcel.Target.ID).CustomerLocation, getCustomer(myParcel.Sender.ID).CustomerLocation.calculateDistance(getCustomer(myParcel.Target.ID).CustomerLocation));
+                        }
+                        else
+                        {
+                            droneToUpdate.StatusOfDrone = DroneStatuses.scheduled;
+                            droneToUpdate.DroneLocation = getCustomer(myParcel.Sender.ID).CustomerLocation;
+                            droneToUpdate.ParcelInDelivery = new ParcelInDelivery(myParcel.ID, false, myParcel.Priority, myParcel.Weight, myParcel.Sender, myParcel.Target, getCustomer(myParcel.Sender.ID).CustomerLocation, getCustomer(myParcel.Target.ID).CustomerLocation, getCustomer(myParcel.Sender.ID).CustomerLocation.calculateDistance(getCustomer(myParcel.Target.ID).CustomerLocation));
+                        }
+                    }
+                    else
+                    {
+                        //List<Station> listS = (List<Station>)getListStations();
+                        //for (int i = 0; i < listS.Count; i++)
+                        //{
+                        //    for (int j = 0; j < listS[i].ListDroneInCharge.Count; j++)
+                        //        if (listS[i].ListDroneInCharge[j].ID == droneToUpdate.ID)
+                        //        {
+                        //            droneToUpdate.StatusOfDrone = DroneStatuses.maintenance;
+                        //            droneToUpdate.DroneLocation = listS[i].StationLocation;
+                        //            flag = true;
+                        //        }
+                        //}
+                        //if (flag == false)
+                        //{
+                            droneToUpdate.StatusOfDrone = DroneStatuses.available;
+                            droneToUpdate.DroneLocation = new location(r.NextDouble() * (33.5 - 29.3) + 29.3, r.NextDouble() * (36.3 - 33.7) + 33.7);
+                        //}
+                    }
+                    //flag = false;
+                        listDrone.Add(droneToUpdate);
 
                     //Drone sendDrone = new();
                     //sendDrone.ID = drone.ID;
@@ -357,6 +393,7 @@ namespace BL
                             listDrone[i].Battary -= (listDrone[i].ParcelInDelivery.Distance * dal.AskToCharge()[(int)listDrone[i].ParcelInDelivery.Weight]);
                             listDrone[i].DroneLocation = getCustomer(listDrone[i].ParcelInDelivery.Target.ID).CustomerLocation;
                             listDrone[i].StatusOfDrone = DroneStatuses.available;
+                            listDrone[i].ParcelInDelivery = new();
                             //dal.deleteParcel(listDrone[i].ParcelInDelivery.ID);
                             //listDrone[i].ParcelInDelivery = null;
                         }

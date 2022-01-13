@@ -48,5 +48,18 @@ namespace PL
         {
             new listOfParcel(bl).ShowDialog();
         }
+
+        private void closeButton_Click(object sender, RoutedEventArgs e)
+        {
+            BlApi.BO.Station tempStation;
+            List<BlApi.BO.StationToList> listStations = (List<BlApi.BO.StationToList>)bl.getListStationToList();
+            for (int i = 0; i < listStations.Count; i++)
+            { 
+                tempStation = bl.getStation(listStations[i].ID);
+                tempStation.ChargeSlots = (listStations[i].NumOfAvalibleChargeSlot + listStations[i].NumOfNotAvalibleChargeSlot);
+                bl.updateStation(tempStation);
+            }
+            this.Close();
+        }
     }
 }

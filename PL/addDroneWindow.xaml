@@ -35,21 +35,23 @@
 
 
             <Label Content="Max Weigth:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <!-- <ComboBox x:Name="maxWeigthComboBox" Grid.Column="1" DisplayMemberPath="MaxWeigth" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120" SelectionChanged="maxWeigthComboBox_SelectionChanged">
-            <ComboBox.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <VirtualizingStackPanel/>
-                </ItemsPanelTemplate>
-            </ComboBox.ItemsPanel>-->
-            <ComboBox x:Name="maxWeigthComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120" SelectionChanged="maxWeigthComboBox_SelectionChanged">
+            <ComboBox x:Name="maxWeigthComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120" SelectionChanged="maxWeigthComboBox_SelectionChanged" Text="{Binding MaxWeigth, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
+                <ComboBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <VirtualizingStackPanel/>
+                    </ItemsPanelTemplate>
+                </ComboBox.ItemsPanel>
             </ComboBox>
+
+            <!--<ComboBox x:Name="maxWeigthComboBox" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="3" VerticalAlignment="Center" Width="120" SelectionChanged="maxWeigthComboBox_SelectionChanged">-->
+
 
             <Label Content="Model:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="modelTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Parcel In Delivery:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBox x:Name="parcelInDeliveryTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding ParcelInDelivery, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Status Of Drone:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <ComboBox x:Name="statusOfDroneComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="120">
+            <ComboBox x:Name="statusOfDroneComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="6" VerticalAlignment="Center" Width="120" Text="{Binding StatusOfDrone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
@@ -149,6 +151,13 @@
             </Button>
             <Button x:Name="automatic" Content="Button" HorizontalAlignment="Left" Height="37" Margin="67,322,0,0" VerticalAlignment="Top" Width="39" Click="automatic_Click"/>
             <Button x:Name="manualButton" Content="Button" HorizontalAlignment="Left" Height="48" Margin="5,289,0,0" VerticalAlignment="Top" Width="34" Click="manualButton_Click"/>
+            <Button x:Name="myLocation" HorizontalAlignment="Left" Height="39" Margin="41,92,0,0" VerticalAlignment="Top" Width="32" Click="myLocation_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+                <StackPanel Height="29" Width="29">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/location.png"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
 
         </Grid>
     </Grid>

@@ -4,7 +4,7 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>net5.0-windows</TargetFramework>
     <UseWPF>true</UseWPF>
-    <NoWin32Manifest>true</NoWin32Manifest>
+    <!--<ApplicationManifest>app.manifest</ApplicationManifest>-->
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,6 +24,7 @@
     <None Remove="drone with parcel.png" />
     <None Remove="drone.png" />
     <None Remove="group.png" />
+    <None Remove="location.png" />
     <None Remove="menu.png" />
     <None Remove="openParcel.png" />
     <None Remove="parcel.png" />
@@ -53,6 +54,7 @@
     <Resource Include="drone with parcel.png" />
     <Resource Include="drone.png" />
     <Resource Include="group.png" />
+    <Resource Include="location.png" />
     <Resource Include="menu.png" />
     <Resource Include="openParcel.png" />
     <Resource Include="parcel.png" />

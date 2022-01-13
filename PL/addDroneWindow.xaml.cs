@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -21,12 +22,13 @@ namespace PL
     /// <summary>
     /// Interaction logic for addDroneWindow.xaml
     /// </summary>
-    public partial class addDroneWindow : Window//, INotifyPropertyChanged
+    public partial class addDroneWindow : Window, INotifyPropertyChanged
     {
         private BlApi.IBL bl;
         BackgroundWorker Worker;
-        //public event PropertyChangedEventHandler PropertyChanged;
-        public bool Auto; //{ get => auto; set => this.setAndNotify(PropertyChanged, nameof(Auto) out auto, value)}
+        public event PropertyChangedEventHandler PropertyChanged;
+        bool auto;
+        public bool Auto;// { get => auto; set => this.setAndNotify(PropertyChanged, nameof(Auto), out auto, value); }
         bool Closing = false;
         bool Charge, Schedule, Release, Pickup, Deliver;
        
@@ -56,6 +58,8 @@ namespace PL
                 updateButton.Visibility = Visibility.Hidden;
                 ChargeButton.Visibility = Visibility.Hidden;
                 ParcelButton.Visibility = Visibility.Hidden;
+                automatic.Visibility = Visibility.Hidden;
+                manualButton.Visibility = Visibility.Hidden;
             }
             if (num > 0) //עדכון רחפן
             {
@@ -101,6 +105,8 @@ namespace PL
               //  if (tempDrone.TheParcelInDelivery != null) { parcelInDeliveryTextBox.Text = tempDrone.TheParcelInDelivery.ID.ToString(); statusOfDroneComboBox.IsEnabled = false; }
               //  droneLocationTextBox.Text = tempDrone.DroneLocation.ToString();
                 droneLocationTextBox.IsEnabled = false;
+                automatic.Visibility = Visibility.Hidden;
+                manualButton.Visibility = Visibility.Hidden;
             }
         }
 
@@ -188,10 +194,13 @@ namespace PL
                 if (statusOfDroneComboBox.Text == "available") //שליחה לטעינה
                 {
                     bl.sendToCharge(bl.getDrone(int.Parse(iDTextBox.Text)));
-                    MessageBox.Show("שליחת הרחפן בוצעה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                    
+                    MessageBox.Show("שליחת הרחפן לטעינה בוצעה בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
+                    PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
+                    DataContext = d;
                 }
                 if (statusOfDroneComboBox.Text == "scheduled" || statusOfDroneComboBox.Text == "delivery") throw new NotSupportedException("לא ניתן לשלוח את הרחפן לטעינה\nהרחפן במשלוח\n");
+                
             }
             catch (Exception ex)
             {
@@ -210,6 +219,9 @@ namespace PL
             {
                 bl.releaseFromCharge(bl.getDrone(int.Parse(iDTextBox.Text)), double.Parse(timeInChargeBox.Text));
                 MessageBox.Show("שחרור הרחפן מטעינה בוצע בהצלחה \n", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
+                PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
+                DataContext = d;
                 this.Close();
             }
             catch (Exception ex)
@@ -228,9 +240,7 @@ namespace PL
                     MessageBox.Show("הרחפן שוייך בהצלחה\n", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
                     PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
-
-                    maxWeigthComboBox.Text = d.MaxWeigth.ToString();
-                    statusOfDroneComboBox.Text = d.StatusOfDrone.ToString();
+                    DataContext = d;
 
                     return;
                 }
@@ -241,9 +251,7 @@ namespace PL
                     MessageBox.Show("החבילה נאספה בהצלחה\n", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
                     PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
-
-                    maxWeigthComboBox.Text = d.MaxWeigth.ToString();
-                    statusOfDroneComboBox.Text = d.StatusOfDrone.ToString();
+                    DataContext = d;
 
                     return;
                 }
@@ -253,9 +261,7 @@ namespace PL
                     MessageBox.Show("החבילה סופקה בהצלחה\n", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
                     PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
-
-                    maxWeigthComboBox.Text = d.MaxWeigth.ToString();
-                    statusOfDroneComboBox.Text = d.StatusOfDrone.ToString();
+                    DataContext = d;
 
                 }
             }
@@ -268,7 +274,9 @@ namespace PL
         private void automatic_Click(object sender, RoutedEventArgs e)
         {
             Auto = true;
-            Worker = new() { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
+            Worker = new BackgroundWorker();// { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
+            Worker.WorkerReportsProgress = true;
+            Worker.WorkerSupportsCancellation = true;
             Worker.DoWork += Worker_DoWork;
             Worker.ProgressChanged += Worker_ProgressChanged;
             Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
@@ -283,6 +291,12 @@ namespace PL
         private void manualButton_Click(object sender, RoutedEventArgs e)
         {
             Closing = true;
+        }
+
+        private void myLocation_Click(object sender, RoutedEventArgs e)
+        {
+            Drone drone = bl.getDrone(int.Parse(iDTextBox.Text));
+            new LocationWindow(drone.DroneLocation.latitude, drone.DroneLocation.longitude).ShowDialog();
         }
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -318,15 +332,18 @@ namespace PL
 
         private void updateDroneView()
         {
-            lock(bl)
-            {
-                Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
-                DataContext = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
-                updateFlags(tempD);
+            //    lock(bl)
+            ////    {
+            //Drone tempD = bl.getDrone((int)e.ProgressPercentage);
+             Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
+            DataContext = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
+            Thread.Sleep(1000);    
+            updateFlags(tempD);
                 //this.setAndNotify(PropertyChanged, nameof(Drone), out tempD, tempD);
-            }
+          //  }
         }
-    
+        //DataContext = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
 
-}
+
+    }
 }
