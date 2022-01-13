@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="addDroneWindow" Height="485" Width="379">
+        Title="addDroneWindow" Height="485" Width="379" Background="#FFBCDBDD">
     <Grid Margin="0,0,0,36">
 
         <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top">
@@ -105,54 +105,71 @@
         <Label x:Name="LongitudeText" Content="Longitude:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="13" VerticalAlignment="Center" Width="94"/>
         <Label x:Name="LatitudeText" Content="Latitude:" Grid.Column="1" HorizontalAlignment="Center" Height="28" Grid.Row="15" VerticalAlignment="Center" Width="94"/>-->
 
-            <Button x:Name="updateButton" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="44" Background="White" BorderBrush="White" Click="Button_Click" Margin="292,332,0,0">
+            <Button x:Name="updateButton" HorizontalAlignment="Left" Height="46" VerticalAlignment="Top" Width="44" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click" Margin="227,332,0,0">
                 <StackPanel x:Name="updateImage" Height="40" Width="40">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="/update.png"/>
                     </StackPanel.Background>
                 </StackPanel>
             </Button>
-            <Button x:Name="closeButton" HorizontalAlignment="Left" Height="35" Margin="4,5,0,0" VerticalAlignment="Top" Width="35" Background="White" BorderBrush="White" Click="Button_Click_6">
-                <StackPanel Height="30" Width="30">
+            <Button x:Name="closeButton" HorizontalAlignment="Left" Height="35" Margin="4,5,0,0" VerticalAlignment="Top" Width="35" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6">
+                <StackPanel Height="25" Width="25">
                     <StackPanel.Background>
-                        <ImageBrush ImageSource="/x.png"/>
+                        <ImageBrush ImageSource="/return.png"/>
                     </StackPanel.Background>
                 </StackPanel>
+
             </Button>
-            <Button x:Name="ChargeButton" HorizontalAlignment="Left" Height="45" Margin="174,334,0,0" VerticalAlignment="Top" Width="44" Background="White" BorderBrush="White" Click="Button_Click_2">
+            <Button x:Name="ChargeButton" HorizontalAlignment="Left" Height="45" Margin="103,329,0,0" VerticalAlignment="Top" Width="44" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_2">
                 <StackPanel x:Name="chargeImage" Height="40" Width="40">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="/charge.png"/>
                     </StackPanel.Background>
                 </StackPanel>
             </Button>
-            <Button x:Name="ParcelButton" HorizontalAlignment="Left" Height="45" Margin="236,334,0,0" VerticalAlignment="Top" Width="44" Background="White" BorderBrush="White" Click="Button_Click_3">
+            <Button x:Name="ParcelButton" HorizontalAlignment="Left" Height="45" Margin="165,334,0,0" VerticalAlignment="Top" Width="44" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_3">
                 <StackPanel Height="40" Width="40">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="/drone with parcel.png"/>
                     </StackPanel.Background>
                 </StackPanel>
             </Button>
-            <Button x:Name="plusButton" HorizontalAlignment="Left" Height="44" Margin="290,315,0,0" VerticalAlignment="Top" Width="47" Background="White" BorderBrush="White" Click="Button_Click_1">
+            <Button x:Name="plusButton" HorizontalAlignment="Left" Height="44" Margin="290,315,0,0" VerticalAlignment="Top" Width="47" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_1">
                 <StackPanel x:Name="plusImage" Height="40" Width="40">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="/plus.png"/>
                     </StackPanel.Background>
                 </StackPanel>
             </Button>
-            <TextBox x:Name="timeInChargeBox" HorizontalAlignment="Left" Height="22" Margin="171,384,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="47" TextChanged="timeInChargeBox_TextChanged"/>
-            <Label x:Name="timeInChargeText" Content="Enter time in charge:" HorizontalAlignment="Left" Height="28" Margin="45,381,0,0" VerticalAlignment="Top" Width="121"/>
-            <Button x:Name="vButton" HorizontalAlignment="Left" Height="20" Margin="224,385,0,0" VerticalAlignment="Top" Width="28" Background="White" BorderBrush="White" Click="vButton_Click">
-                <StackPanel x:Name="vImage" Height="20" Width="25">
+            <TextBox x:Name="timeInChargeBox" HorizontalAlignment="Left" Height="22" Margin="118,382,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="47" TextChanged="timeInChargeBox_TextChanged"/>
+            <Label x:Name="timeInChargeText" Content="Enter time in charge:" HorizontalAlignment="Left" Height="28" Margin="-4,379,0,0" VerticalAlignment="Top" Width="122"/>
+            <Button x:Name="vButton" HorizontalAlignment="Left" Height="28" Margin="165,379,0,0" VerticalAlignment="Top" Width="28" Background="{x:Null}" BorderBrush="{x:Null}" Click="vButton_Click">
+                <StackPanel Height="18" Width="18">
                     <StackPanel.Background>
-                        <ImageBrush ImageSource="/v.png"/>
+                        <ImageBrush ImageSource="/v3.png"/>
+                    </StackPanel.Background>
+                </StackPanel>
+
+
+
+
+            </Button>
+            <Button x:Name="automatic" HorizontalAlignment="Left" Height="36" Margin="321,10,0,0" VerticalAlignment="Top" Width="38" Click="automatic_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+                <StackPanel Height="28" Width="28">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/play.png"/>
                     </StackPanel.Background>
                 </StackPanel>
             </Button>
-            <Button x:Name="automatic" Content="Button" HorizontalAlignment="Left" Height="37" Margin="67,322,0,0" VerticalAlignment="Top" Width="39" Click="automatic_Click"/>
-            <Button x:Name="manualButton" Content="Button" HorizontalAlignment="Left" Height="48" Margin="5,289,0,0" VerticalAlignment="Top" Width="34" Click="manualButton_Click"/>
-            <Button x:Name="myLocation" HorizontalAlignment="Left" Height="39" Margin="41,92,0,0" VerticalAlignment="Top" Width="32" Click="myLocation_Click" Background="{x:Null}" BorderBrush="{x:Null}">
-                <StackPanel Height="29" Width="29">
+            <Button x:Name="manualButton" HorizontalAlignment="Left" Height="32" Margin="286,12,0,0" VerticalAlignment="Top" Width="33" Click="manualButton_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+                <StackPanel Height="28" Width="28">
+                    <StackPanel.Background>
+                        <ImageBrush ImageSource="/pause.png"/>
+                    </StackPanel.Background>
+                </StackPanel>
+            </Button>
+            <Button x:Name="myLocation" HorizontalAlignment="Left" Height="25" Margin="47,101,0,0" VerticalAlignment="Top" Width="25" Click="myLocation_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+                <StackPanel Height="20" Width="20">
                     <StackPanel.Background>
                         <ImageBrush ImageSource="/location.png"/>
                     </StackPanel.Background>

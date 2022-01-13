@@ -6,8 +6,12 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="listOfParcel" Height="450" Width="450">
-    <Grid Margin="0,-3,0,3">
-        <DataGrid x:Name="parcelToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="29,110,93,110" RowDetailsVisibilityMode="VisibleWhenSelected" ItemsSource="{Binding}">
+    <Grid Margin="0,-3,0,3" Background="#FFBCDBDD">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*"/>
+            <ColumnDefinition Width="166*"/>
+        </Grid.ColumnDefinitions>
+        <DataGrid x:Name="parcelToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="29,110,93,110" RowDetailsVisibilityMode="VisibleWhenSelected" ItemsSource="{Binding}" Grid.ColumnSpan="2">
             <!--<DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridCell}">
                     <EventSetter Event="MouseDoubleClick" Handler="DataGridCell_MouseDoubleClick"/>
@@ -22,21 +26,21 @@
                 <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="addButton" HorizontalAlignment="Left" Height="55" Margin="248,345,0,0" VerticalAlignment="Top" Width="55" Click="Button_Click" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button x:Name="addButton" HorizontalAlignment="Left" Height="55" Margin="130,345,0,0" VerticalAlignment="Top" Width="55" Click="Button_Click" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="1">
             <StackPanel Height="50" Width="50">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/addParcel.png"/>
                 </StackPanel.Background>
             </StackPanel>
         </Button>
-        <Button x:Name="deleteButton" HorizontalAlignment="Left" Height="55" Margin="109,345,0,0" VerticalAlignment="Top" Width="55" Background="{x:Null}" BorderBrush="{x:Null}" Click="deleteButton_Click">
+        <Button x:Name="deleteButton" HorizontalAlignment="Left" Height="55" Margin="109,345,0,0" VerticalAlignment="Top" Width="55" Background="{x:Null}" BorderBrush="{x:Null}" Click="deleteButton_Click" Grid.ColumnSpan="2">
             <StackPanel Height="50" Width="50">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/deleteParcel.png"/>
                 </StackPanel.Background>
             </StackPanel>
         </Button>
-        <Button x:Name="menuButton" HorizontalAlignment="Left" Height="27" Margin="383,107,0,0" VerticalAlignment="Top" Width="29" Click="Button_Click_1" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button x:Name="menuButton" HorizontalAlignment="Left" Height="27" Margin="265,107,0,0" VerticalAlignment="Top" Width="29" Click="Button_Click_1" Background="{x:Null}" BorderBrush="{x:Null}" Grid.Column="1">
             <StackPanel Height="25" Width="25">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/menu.png"/>
@@ -44,21 +48,21 @@
             </StackPanel>
 
         </Button>
-        <Button x:Name="senderButton" HorizontalAlignment="Left" Height="42" Margin="373,154,0,0" VerticalAlignment="Top" Width="42" Background="{x:Null}" Click="Button_Click_2" BorderBrush="{x:Null}">
+        <Button x:Name="senderButton" HorizontalAlignment="Left" Height="42" Margin="255,154,0,0" VerticalAlignment="Top" Width="42" Background="{x:Null}" Click="Button_Click_2" BorderBrush="{x:Null}" Grid.Column="1">
             <StackPanel Height="40" Width="40">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/sender.png"/>
                 </StackPanel.Background>
             </StackPanel>
         </Button>
-        <Button x:Name="targetButton" HorizontalAlignment="Left" Height="40" Margin="374,211,0,0" VerticalAlignment="Top" Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Click="targetButton_Click">
+        <Button x:Name="targetButton" HorizontalAlignment="Left" Height="40" Margin="256,211,0,0" VerticalAlignment="Top" Width="40" Background="{x:Null}" BorderBrush="{x:Null}" Click="targetButton_Click" Grid.Column="1">
             <StackPanel Height="36" Width="40">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/target.png"/>
                 </StackPanel.Background>
             </StackPanel>
         </Button>
-        <Button x:Name="droneButton" HorizontalAlignment="Left" Height="43" Margin="374,260,0,0" VerticalAlignment="Top" Width="43" Background="{x:Null}" BorderBrush="{x:Null}" Click="droneButton_Click">
+        <Button x:Name="droneButton" HorizontalAlignment="Left" Height="43" Margin="256,260,0,0" VerticalAlignment="Top" Width="43" Background="{x:Null}" BorderBrush="{x:Null}" Click="droneButton_Click" Grid.Column="1">
             <StackPanel Height="40" Width="40">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/drone.png"/>

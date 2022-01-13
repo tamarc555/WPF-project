@@ -273,6 +273,7 @@ namespace PL
 
         private void automatic_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("התהליך האוטומטי הופעל");
             Auto = true;
             Worker = new BackgroundWorker();// { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
             Worker.WorkerReportsProgress = true;
@@ -286,11 +287,14 @@ namespace PL
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             bl.startDroneSimulator((int)e.Argument, updateDrone, checkStop);
+
         }
 
         private void manualButton_Click(object sender, RoutedEventArgs e)
         {
+            MessageBox.Show("התהליך האוטומטי הופסק");
             Closing = true;
+            this.Close();
         }
 
         private void myLocation_Click(object sender, RoutedEventArgs e)
@@ -307,6 +311,7 @@ namespace PL
         {
             Auto = false;
             Worker = null;
+            MessageBox.Show("התהליך האוטומטי הושלם");
             if (Closing) Close();
         }
 
@@ -335,8 +340,11 @@ namespace PL
             //    lock(bl)
             ////    {
             //Drone tempD = bl.getDrone((int)e.ProgressPercentage);
-             Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
-            DataContext = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
+            BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
+            PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
+            DataContext = d;
+            //Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
+            //DataContext = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
             Thread.Sleep(1000);    
             updateFlags(tempD);
                 //this.setAndNotify(PropertyChanged, nameof(Drone), out tempD, tempD);

@@ -65,23 +65,6 @@ namespace PL
             }
         }
 
-        //grouping:
-        private void groupButtun_Click(object sender, RoutedEventArgs e)
-        {
-
-        //    var lst = from station in (IEnumerable<StationToList>)stationToListDataGrid.ItemsSource
-        //              group station by station.NumOfAvalibleChargeSlot into chargeGroup
-        //              select new { numOfAvalibleChargeSlotColumn = chargeGroup.Key, lstSt = chargeGroup };
-        //    //_myCollection.Clear();
-        //    foreach (var item in lst)
-        //        foreach (var temp in item.lstSt)
-        //        {
-        //            _myCollection.Remove((StationToList)temp);
-        //            _myCollection.Add((StationToList)temp);
-        //        }
-        //    stationToListDataGrid.ItemsSource = _myCollection;
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new stationWindow(bl).ShowDialog();

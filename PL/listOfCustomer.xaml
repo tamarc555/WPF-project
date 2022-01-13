@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="listOfCustomer" Height="450" Width="700">
 
-    <Grid>
+    <Grid Background="#FFBCDBDD">
         <DataGrid x:Name="customerToListDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="54,55,109,120" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
             <DataGrid.Resources>
                 <Style TargetType="{x:Type DataGridCell}">

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="listOfDrone" Height="450" Width="800">
-    <Grid>
+    <Grid Background="#FFBCDBDD">
         <DataGrid x:Name="droneToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="48,70,78.6,49" RowDetailsVisibilityMode="VisibleWhenSelected">
 
             <DataGrid.Resources>
@@ -26,7 +26,7 @@
         </DataGrid>
 
 
-        <Grid Name="MainGrid" Margin="0,10,0,-11">
+        <Grid Name="MainGrid" Margin="0,10,0,49">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="59*"/>
                 <ColumnDefinition Width="341*"/>
@@ -43,18 +43,18 @@
                     <ColumnDefinition Width="100*"/>
                     <ColumnDefinition Width="100*"/>
                 </Grid.ColumnDefinitions >
-                <ComboBox Name="StatusSelector" Margin="51,24,10,29" Grid.Column="3" Height="22"  Width="139" SelectionChanged="StatusSelector_SelectionChanged"/>
+                <ComboBox Name="StatusSelector" Margin="51,24,10,19" Grid.Column="3"  Width="139" SelectionChanged="StatusSelector_SelectionChanged"/>
                 <ComboBox Name="weightSelector" Grid.Column="4" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="139" Margin="35,24,0,0" SelectionChanged="weightSelector_SelectionChanged"/>
                 <Label x:Name="status_of_drone" Content="מצב הרחפן" HorizontalAlignment="Left" Height="26" VerticalAlignment="Top" Width="92" Margin="108,0,0,0" Grid.Column="3"/>
                 <Label x:Name="weight_of_drone" Content="משקל הרחפן" Grid.Column="4" HorizontalAlignment="Left" Height="29" VerticalAlignment="Top" Width="87" Margin="87,0,0,0"/>
-                <Button x:Name="addDrone" HorizontalAlignment="Left" Margin="9,0,0,22" Width="56" Height="53" Click="addDrone_Click" Background="White" BorderBrush="White">
+                <Button x:Name="addDrone" HorizontalAlignment="Left" Margin="9,0,0,10" Width="56" Click="addDrone_Click" Background="{x:Null}" BorderBrush="{x:Null}">
                     <StackPanel x:Name="addDroneImage" Height="49" Width="52">
                         <StackPanel.Background>
                             <ImageBrush ImageSource="/addDrone.png"/>
                         </StackPanel.Background>
                     </StackPanel>
                 </Button>
-                <Button x:Name="resetButton" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" Click="resetButton_Click_1" Background="White" BorderBrush="White" Margin="185,5,0,0">
+                <Button x:Name="resetButton" Grid.ColumnSpan="2" Grid.Column="2" HorizontalAlignment="Left" Height="45" VerticalAlignment="Top" Width="45" Click="resetButton_Click_1" Background="{x:Null}" BorderBrush="{x:Null}" Margin="185,5,0,0" Foreground="{x:Null}">
                     <StackPanel x:Name="resetImage" Height="40" Width="40">
                         <StackPanel.Background>
                             <ImageBrush ImageSource="/reset.png"/>
@@ -78,7 +78,7 @@
                 </Button>
 
             </Grid>
-            <Button x:Name="groupingButtun" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="223,10,0,0" VerticalAlignment="Top" Width="35" Background="White" Click="Button_Click_1">
+            <Button x:Name="groupingButtun" Grid.Column="1" HorizontalAlignment="Left" Height="37" Margin="223,10,0,0" VerticalAlignment="Top" Width="35" Background="{x:Null}" Click="Button_Click_1">
                 <Button.BorderBrush>
                     <ImageBrush/>
                 </Button.BorderBrush>
