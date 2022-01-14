@@ -27,7 +27,6 @@
     <None Remove="drone.png" />
     <None Remove="dronesDelivers.png" />
     <None Remove="group.png" />
-    <None Remove="home.png" />
     <None Remove="hours.png" />
     <None Remove="IsraelMap.png" />
     <None Remove="location.png" />
