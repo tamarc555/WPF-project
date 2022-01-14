@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="customerWindow" Height="700" Width="700">
     <Grid>
-        <Grid Background="#FFBCDBDF">
+        <Grid Background="#FFDCF2EF">
 
             <Grid x:Name="grid1" VerticalAlignment="Top" Margin="211,78,0,0" HorizontalAlignment="Left">
                 <Grid.RowDefinitions>

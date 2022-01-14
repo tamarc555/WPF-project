@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="parcelWindow" Height="500" Width="400">
-    <Grid Background="#FFBCDBDE">
+    <Grid Background="#FFDCF2F0">
 
         <Grid x:Name="grid1" VerticalAlignment="Top" Margin="80,48,0,0" HorizontalAlignment="Left">
             <Grid.RowDefinitions>

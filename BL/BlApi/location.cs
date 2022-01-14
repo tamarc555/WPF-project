@@ -52,7 +52,7 @@ namespace BlApi
                 return $"{deg}° {min}' {sec}'' {ch}";
             }
 
-            return lat() +"+" + log();
+            return log() +"+" + lat();
         }
     }
 }

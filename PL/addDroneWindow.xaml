@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="addDroneWindow" Height="485" Width="379" Background="#FFBCDBDD">
+        Title="addDroneWindow" Height="485" Width="379" Background="#FFDCF2F0">
     <Grid Margin="0,0,0,36">
 
         <Grid x:Name="grid1" HorizontalAlignment="Center" Margin="0,65,0,0" VerticalAlignment="Top">
