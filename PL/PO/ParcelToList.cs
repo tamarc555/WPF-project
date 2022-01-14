@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,14 +9,19 @@ using static PO.Enum;
 
 namespace PO
 {
-    public class ParcelToList
+    public class ParcelToList : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private int id;
 
         public int ID
         {
             get { return id; }
-            set { id = value; }
+            set { id = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+            }
         }
 
         private string sender;
@@ -23,7 +29,10 @@ namespace PO
         public string Sender
         {
             get { return sender; }
-            set { sender = value; }
+            set { sender = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Sender"));
+            }
         }
 
         private string target;
@@ -31,7 +40,10 @@ namespace PO
         public string Target
         {
             get { return target; }
-            set { target = value; }
+            set { target = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Target"));
+            }
         }
 
         private WeightCategories weight;
@@ -39,7 +51,10 @@ namespace PO
         public WeightCategories Weight
         {
             get { return weight; }
-            set { weight = value; }
+            set { weight = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Weight"));
+            }
         }
 
         private Priorities priority;
@@ -47,7 +62,10 @@ namespace PO
         public Priorities Priority
         {
             get { return priority; }
-            set { priority = value; }
+            set { priority = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Priority"));
+            }
         }
 
         private ParcelStatuses theParcelStatus;
@@ -55,7 +73,10 @@ namespace PO
         public ParcelStatuses TheParcelStatus
         {
             get { return theParcelStatus; }
-            set { theParcelStatus = value; }
+            set { theParcelStatus = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("TheParcelStatus"));
+            }
         }
 
         public ParcelToList(int _ID, string _senderId, string _targetId, WeightCategories _weight, Priorities _priority, ParcelStatuses _theParcelStatus)  //ctor

@@ -114,7 +114,7 @@
 
         </Button>
         <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
-         
+
         </Button>
         <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="614,146,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
             <StackPanel Height="35" Width="109">
@@ -144,7 +144,7 @@
                 </StackPanel.Background>
             </StackPanel>
         </Button>
-        <Frame x:Name="myFrame" Content="Frame" NavigationUIVisibility="Hidden" HorizontalAlignment="Left" Height="549" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="603"/>
+        <Frame x:Name="myFrame" Content="Frame" NavigationUIVisibility="Hidden" HorizontalAlignment="Left" Height="549" Margin="-507,13,0,0" Grid.Row="1" VerticalAlignment="Top" Width="603"/>
 
     </Grid>
 </Window>

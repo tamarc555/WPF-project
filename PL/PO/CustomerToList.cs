@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PO
 {
-    public class CustomerToList
+    public class CustomerToList : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private int id;
 
         public int ID
         {
             get { return id; }
-            set { id = value; }
+            set { id = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+            }
         }
 
         private string name;
@@ -21,7 +27,10 @@ namespace PO
         public string Name
         {
             get { return name; }
-            set { name = value; }
+            set { name = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Name"));
+            }
         }
 
         private string phone;
@@ -29,7 +38,10 @@ namespace PO
         public string Phone
         {
             get { return phone; }
-            set { phone = value; }
+            set { phone = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Phone"));
+            }
         }
 
         private int numOfParcelProvided;
@@ -37,7 +49,10 @@ namespace PO
         public int NumOfParcelProvided
         {
             get { return numOfParcelProvided; }
-            set { numOfParcelProvided = value; }
+            set { numOfParcelProvided = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("NumOfParcelProvided"));
+            }
         }
 
         private int numOfParcelNotProvided;
@@ -45,7 +60,10 @@ namespace PO
         public int NumOfParcelNotProvided
         {
             get { return numOfParcelNotProvided; }
-            set { numOfParcelNotProvided = value; }
+            set { numOfParcelNotProvided = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("NumOfParcelNotProvided"));
+            }
         }
 
         private int numOfParcelReceived;
@@ -53,7 +71,10 @@ namespace PO
         public int NumOfParcelReceived
         {
             get { return numOfParcelReceived; }
-            set { numOfParcelReceived = value; }
+            set { numOfParcelReceived = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("NumOfParcelReceived"));
+            }
         }
 
         private int numOfParcelInDelivery;
@@ -61,7 +82,10 @@ namespace PO
         public int NumOfParcelInDelivery
         {
             get { return numOfParcelInDelivery; }
-            set { numOfParcelInDelivery = value; }
+            set { numOfParcelInDelivery = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("NumOfParcelInDelivery"));
+            }
         }
 
         public CustomerToList(int _ID, string _name, string _phone, int _numOfParcelProvided, int _numOfParcelNotProvided, int _numOfParcelReceived, int _numOfParcelInDelivery)  //ctor

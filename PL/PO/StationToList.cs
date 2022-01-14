@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PO
 {
-    public class StationToList
+    public class StationToList : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private int id;
 
         public int ID
         {
             get { return id; }
-            set { id = value; }
+            set { id = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+            }
         }
 
         private int name;
@@ -21,7 +27,10 @@ namespace PO
         public int Name
         {
             get { return name; }
-            set { name = value; }
+            set { name = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Name"));
+            }
         }
 
         
@@ -30,7 +39,10 @@ namespace PO
         public int NumOfAvalibleChargeSlot
         {
             get { return numOfAvalibleChargeSlot; }
-            set { numOfAvalibleChargeSlot = value; }
+            set { numOfAvalibleChargeSlot = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("NumOfAvalibleChargeSlot"));
+            }
         }
 
         private int numOfNotAvalibleChargeSlot;
@@ -38,7 +50,10 @@ namespace PO
         public int NumOfNotAvalibleChargeSlot
         {
             get { return numOfNotAvalibleChargeSlot; }
-            set { numOfNotAvalibleChargeSlot = value; }
+            set { numOfNotAvalibleChargeSlot = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("NumOfNotAvalibleChargeSlot"));
+            }
         }
 
         public StationToList(int _Id, int _name, int _numOfAvalibleChargeSlot, int _numOfNotAvalibleChargeSlot)

@@ -1,6 +1,7 @@
 ﻿using PO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,14 +9,19 @@ using static PO.Enum;
 
 namespace PL.PO
 {
-    public class DroneToList
+    public class DroneToList : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private int id;
 
         public int ID
         {
             get { return id; }
-            set { id = value; }
+            set { id = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+            }
         }
 
         private string model;
@@ -23,7 +29,10 @@ namespace PL.PO
         public string Model
         {
             get { return model; }
-            set { model = value; }
+            set { model = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Model"));
+            }
         }
 
         private WeightCategories maxWeigth;
@@ -31,7 +40,10 @@ namespace PL.PO
         public WeightCategories MaxWeigth
         {
             get { return maxWeigth; }
-            set { maxWeigth = value; }
+            set { maxWeigth = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("MaxWeigth"));
+            }
         }
 
         private double battary;
@@ -39,7 +51,10 @@ namespace PL.PO
         public double Battary
         {
             get { return battary; }
-            set { battary = value; }
+            set { battary = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Battary"));
+            }
         }
 
 
@@ -48,7 +63,10 @@ namespace PL.PO
         public DroneStatuses StatusOfDrone
         {
             get { return statusOfDrone; }
-            set { statusOfDrone = value; }
+            set { statusOfDrone = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("StatusOfDrone"));
+            }
         }
 
         private string droneLocation;
@@ -56,7 +74,10 @@ namespace PL.PO
         public string DroneLocation
         {
             get { return droneLocation; }
-            set { droneLocation = value; }
+            set { droneLocation = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("DroneLocation"));
+            }
         }
 
         private int parcelInDelivery;
@@ -64,7 +85,10 @@ namespace PL.PO
         public int ParcelInDelivery
         {
             get { return parcelInDelivery; }
-            set { parcelInDelivery = value; }
+            set { parcelInDelivery = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ParcelInDelivery"));
+            }
         }
 
 

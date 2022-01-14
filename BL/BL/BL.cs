@@ -770,19 +770,32 @@ namespace BL
         }
         */
         [MethodImpl(MethodImplOptions.Synchronized)]
-        public IEnumerable<DroneToList> getPartOfDrone(Predicate<DroneToList> DroneCondition, IEnumerable<DroneToList> myList = null)
+        public IEnumerable<myDroneToList> getPartOfDrone(Predicate<DroneToList> DroneCondition, List<myDroneToList> myList = null)
         {
 
             if (myList == null)
             {
-                return (from drone in listDrone
-                        where DroneCondition(drone)
-                        select drone).ToList();
+                List<DroneToList> lst = (from drone in listDrone
+                                         where DroneCondition(drone)
+                                         select drone).ToList();
+                myList = new List<myDroneToList>();
+                for (int i = 0; i < lst.Count; i++)
+                    myList.Add(new myDroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation.ToString(), lst[i].ParcelInDelivery.ID));
+                return myList;
             }
-
-            return (from drone in myList
-                    where DroneCondition(drone)
-                    select drone).ToList();
+            else
+            {
+                List<DroneToList> lst1 = new();
+                for (int i = 0; i < myList.Count; i++)
+                    lst1.Add(new DroneToList(myList[i].ID, myList[i].Model, (WeightCategories)myList[i].MaxWeigth, myList[i].Battary, (DroneStatuses)myList[i].StatusOfDrone, getDrone(myList[i].ID).DroneLocation, getDrone(myList[i].ID).TheParcelInDelivery));
+                List<DroneToList> lst = (from drone in lst1
+                                         where DroneCondition(drone)
+                                         select drone).ToList();
+                myList.Clear();
+                for (int i = 0; i < lst.Count; i++)
+                    myList.Add(new myDroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation.ToString(), lst[i].ParcelInDelivery.ID));
+                return myList;
+            }
         }
 
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -991,27 +1004,26 @@ namespace BL
             return true;
         }
 
-        public int nextParcel(DroneToList drone)
+        public int nextParcel(Drone drone)
         {
             lock (dal)
             {
                 return dal.getPartOfParcel(p => p.Scheduled == null
                                            && (WeightCategories)(p.Weight) <= drone.MaxWeigth
-                                           && calculateEnoughBattaryForDelievery(new Drone(drone.ID,drone.Model,drone.MaxWeigth,drone.Battary,drone.StatusOfDrone,drone.ParcelInDelivery,drone.DroneLocation), getParcel(p.ID)))
+                                           && calculateEnoughBattaryForDelievery(drone, getParcel(p.ID)))
                                            .OrderByDescending(p => p.Priority)
                                            .ThenByDescending(p => p.Weight)
                           .FirstOrDefault().ID;
             }
         }
 
-        public int findClosestStation(DroneToList myDrone)
+        public int findClosestStation(Drone myDrone)
         {
-            Drone tempDrone = getDrone(myDrone.ID);
                     Station tempStation = new();
                     int i = 0;
                     for (; i < listDrone.Count; i++)
                     {
-                        if (listDrone[i].ID == tempDrone.ID)
+                        if (listDrone[i].ID == myDrone.ID)
                         {
                             if (!(listDrone[i].StatusOfDrone == DroneStatuses.available)) throw new noAvailableDrone("the drone is not avalible for charge\n");
                             List<Station> avalibleStations = (List<Station>)getAvailableStations();

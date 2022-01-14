@@ -1,6 +1,7 @@
 ﻿using PO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,14 +11,19 @@ namespace PL
 {
     namespace PO
     {
-        public class Drone
+        public class Drone : INotifyPropertyChanged
         {
+            public event PropertyChangedEventHandler PropertyChanged;
+
             private int id;
 
             public int ID
             {
                 get { return id; }
-                set { id = value; }
+                set { id = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+                }
             }
 
             private string model;
@@ -25,7 +31,10 @@ namespace PL
             public string Model
             {
                 get { return model; }
-                set { model = value; }
+                set { model = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Model"));
+                }
             }
 
             private WeightCategories maxWeigth;
@@ -33,7 +42,10 @@ namespace PL
             public WeightCategories MaxWeigth
             {
                 get { return maxWeigth; }
-                set { maxWeigth = value; }
+                set { maxWeigth = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("MaxWeigth"));
+                }
             }
 
             private double battary;
@@ -41,7 +53,10 @@ namespace PL
             public double Battary
             {
                 get { return battary; }
-                set { battary = value; }
+                set { battary = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Battary"));
+                }
             }
 
 
@@ -50,7 +65,10 @@ namespace PL
             public DroneStatuses StatusOfDrone
             {
                 get { return statusOfDrone; }
-                set { statusOfDrone = value; }
+                set { statusOfDrone = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("StatusOfDrone"));
+                }
             }
 
             private ParcelInDelivery theParcelInDelivery;
@@ -58,7 +76,10 @@ namespace PL
             public ParcelInDelivery TheParcelInDelivery
             {
                 get { return theParcelInDelivery; }
-                set { theParcelInDelivery = value; }
+                set { theParcelInDelivery = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("TheParcelInDelivery"));
+                }
             }
 
 
@@ -67,7 +88,10 @@ namespace PL
             public location DroneLocation
             {
                 get { return droneLocation; }
-                set { droneLocation = value; }
+                set { droneLocation = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("DroneLocation"));
+                }
             }
 
             public Drone(int _ID, string _model, WeightCategories _maxWeigth, double _battary, DroneStatuses _statusOfDrone, ParcelInDelivery _theParcelInDelivery, location _droneLocation)  //ctor

@@ -1,19 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace PO
 {
-    public class DroneInParcel
+    public class DroneInParcel : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private int id;
 
         public int ID
         {
             get { return id; }
-            set { id = value; }
+            set { id = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+            }
         }
 
         private double battary;
@@ -21,7 +27,10 @@ namespace PO
         public double Battary
         {
             get { return battary; }
-            set { battary = value; }
+            set { battary = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Battary"));
+            }
         }
 
         private location droneInParcelLocation;
@@ -29,7 +38,10 @@ namespace PO
         public location DroneInParcelLocation
         {
             get { return droneInParcelLocation; }
-            set { droneInParcelLocation = value; }
+            set { droneInParcelLocation = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("DroneInParcelLocation"));
+            }
         }
 
         public DroneInParcel(int _Id, double _battary, location _droneInParcelLocation)

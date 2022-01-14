@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,14 +8,19 @@ using static PO.Enum;
 
 namespace PO
 {
-    public class ParcelInDelivery
+    public class ParcelInDelivery : INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler PropertyChanged;
+
         private int id;
 
         public int ID
         {
             get { return id; }
-            set { id = value; }
+            set { id = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+            }
         }
 
         private bool statusOfParcel;
@@ -22,7 +28,10 @@ namespace PO
         public bool StatusOfParcel
         {
             get { return statusOfParcel; }
-            set { statusOfParcel = value; }
+            set { statusOfParcel = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("StatusOfParcel"));
+            }
         }
 
         private Priorities priority;
@@ -30,7 +39,10 @@ namespace PO
         public Priorities Priority
         {
             get { return priority; }
-            set { priority = value; }
+            set { priority = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Priority"));
+            }
         }
 
         private WeightCategories weight;
@@ -38,7 +50,10 @@ namespace PO
         public WeightCategories Weight
         {
             get { return weight; }
-            set { weight = value; }
+            set { weight = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Weight"));
+            }
         }
 
 
@@ -47,7 +62,10 @@ namespace PO
         public int Sender
         {
             get { return sender; }
-            set { sender = value; }
+            set { sender = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Sender"));
+            }
         }
 
         private int target;
@@ -55,7 +73,10 @@ namespace PO
         public int Target
         {
             get { return target; }
-            set { target = value; }
+            set { target = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Target"));
+            }
         }
 
         private string pickUpOfParcel;
@@ -63,7 +84,10 @@ namespace PO
         public string PickUpOfParcel
         {
             get { return pickUpOfParcel; }
-            set { pickUpOfParcel = value; }
+            set { pickUpOfParcel = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("PickUpOfParcel"));
+            }
         }
 
         private string providedOfParcel;
@@ -71,7 +95,10 @@ namespace PO
         public string ProvidedOfParcel
         {
             get { return providedOfParcel; }
-            set { providedOfParcel = value; }
+            set { providedOfParcel = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("ProvidedOfParcel"));
+            }
         }
 
         private double distance;
@@ -79,7 +106,10 @@ namespace PO
         public double Distance
         {
             get { return distance; }
-            set { distance = value; }
+            set { distance = value;
+                if (PropertyChanged != null)
+                    PropertyChanged(this, new PropertyChangedEventArgs("Distance"));
+            }
         }
 
         public ParcelInDelivery(int _ID, bool _status, Priorities _priotity, WeightCategories _weight, int _sender, int _target, string _pickUpPlace, string _providedPlace, double _distance)
