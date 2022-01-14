@@ -5,10 +5,19 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:PL"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="550" d:DesignWidth="800"
       Title="hoursPage">
 
-    <Grid>
-        <Button Content="Button" HorizontalAlignment="Left" Height="158" Margin="175,149,0,0" VerticalAlignment="Top" Width="280"/>
+    <Grid Background="#FFDCF2F0">
+        <Button  HorizontalAlignment="Left" Height="38" Margin="387,480,0,0" VerticalAlignment="Top" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click">
+            <StackPanel Height="35" Width="100">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/connect4.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+        <Image HorizontalAlignment="Left" Height="383" Margin="48,30,0,0" VerticalAlignment="Top" Width="463" Source="/hours3.png"/>
+        <Image HorizontalAlignment="Left" Height="65" Margin="364,410,0,0" VerticalAlignment="Top" Width="190" Source="/connect3.png"/>
+
     </Grid>
 </Page>

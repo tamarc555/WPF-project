@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for hoursPage.xaml
+    /// Interaction logic for connectPage.xaml
     /// </summary>
-    public partial class hoursPage : Page
+    public partial class connectPage : Page
     {
-        public hoursPage()
+        public connectPage()
         {
             InitializeComponent();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            this.Content = new connectPage();
-
         }
     }
 }
