@@ -146,7 +146,6 @@
                 </StackPanel.Background>
             </StackPanel>
         </Button>
-        <Slider HorizontalAlignment="Left" Height="73" Margin="181,368,0,0" Grid.Row="1" VerticalAlignment="Top" Width="159" ValueChanged="Slider_ValueChanged"/>
 
     </Grid>
 </Window>
