@@ -76,8 +76,13 @@
         <TextBlock HorizontalAlignment="Left" Height="18" Margin="61,153,0,0" Grid.Row="1" Text=":סיסמא" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Right"/>
         <TextBlock HorizontalAlignment="Left" Height="20" Margin="61,103,0,0" Grid.Row="1" Text=":שם משתמש" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Right"/>
         <Button x:Name="exitManagment" Content="צא ממצב מנהל" HorizontalAlignment="Left" Height="19" Margin="63,213,0,0" Grid.Row="1" VerticalAlignment="Top" Width="118" Click="Button_Click_4"/>
-        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}" Click="Button_Click_7">
-            
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="614,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}" Click="Button_Click_7">
+            <StackPanel Height="35" Width="142">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/home.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+
 
         </Button>
         <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
@@ -87,12 +92,13 @@
                 </StackPanel.Background>
             </StackPanel>
         </Button>
-        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,77,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
-            <StackPanel Height="35" Width="143">
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="614,77,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
+            <StackPanel Height="31" Width="151">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="maakav.png"/>
                 </StackPanel.Background>
             </StackPanel>
+
         </Button>
         <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
             <StackPanel Height="32" Width="34">
@@ -101,14 +107,23 @@
                 </StackPanel.Background>
             </StackPanel>
         </Button>
-        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,111,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}" Click="Button_Click_8">
-            
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="614,111,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}" Click="Button_Click_8">
+            <StackPanel Height="36" Width="152">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/hours.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+
         </Button>
         <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
          
         </Button>
-        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,146,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
-            
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="614,146,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
+            <StackPanel Height="35" Width="109">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/connect.png"/>
+                </StackPanel.Background>
+            </StackPanel>
         </Button>
         <Button HorizontalAlignment="Left" Height="35" Margin="756,4,0,0" VerticalAlignment="Top" Width="39" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click_6" Grid.Row="1">
             <StackPanel Height="32" Width="34">
@@ -117,8 +132,8 @@
                 </StackPanel.Background>
             </StackPanel>
         </Button>
-        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="619,181,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
-            <StackPanel Height="35" Width="119">
+        <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="614,181,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
+            <StackPanel Height="35" Width="109">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="out.png"/>
                 </StackPanel.Background>
