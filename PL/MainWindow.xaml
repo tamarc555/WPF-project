@@ -77,7 +77,7 @@
         <TextBlock HorizontalAlignment="Left" Height="20" Margin="61,103,0,0" Grid.Row="1" Text=":שם משתמש" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextAlignment="Right"/>
         <Button x:Name="exitManagment" Content="צא ממצב מנהל" HorizontalAlignment="Left" Height="19" Margin="63,213,0,0" Grid.Row="1" VerticalAlignment="Top" Width="118" Click="Button_Click_4"/>
         <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="614,43,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}" Click="Button_Click_7">
-            <StackPanel Height="23" Width="134">
+            <StackPanel Height="35" Width="134">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/home.png"/>
                 </StackPanel.Background>
@@ -91,7 +91,7 @@
             </StackPanel>
         </Button>
         <Button Visibility="{Binding Visibility, ElementName=myBorder}" HorizontalAlignment="Left" Height="35" Margin="614,77,0,0" Grid.Row="1" VerticalAlignment="Top" Width="181" Background="{x:Null}">
-            <StackPanel Height="31" Width="151">
+            <StackPanel Height="35" Width="144">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="maakav.png"/>
                 </StackPanel.Background>
@@ -144,6 +144,7 @@
                 </StackPanel.Background>
             </StackPanel>
         </Button>
+        <Frame x:Name="myFrame" Content="Frame" NavigationUIVisibility="Hidden" HorizontalAlignment="Left" Height="549" Margin="10,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="603"/>
 
     </Grid>
 </Window>

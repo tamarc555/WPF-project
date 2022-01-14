@@ -27,13 +27,7 @@ namespace PL
         {
             InitializeComponent();
             webBrowser.Source = new Uri("https://www.google.com/maps/place/" + myLon + "," + myLat);
-           // webBrowser.NavigateToString("https://www.google.com/maps/place/" + myLat + ","+ myLon);
         }
 
-        //        private void Button_Click(object sender, RoutedEventArgs e)
-        //        {
-        //            Uri uri = new Uri(textBox.Text, UriKind.RelativeOrAbsolute);
-        //            WebBrowser.Navigate(string());
-        //        }
     }
 }

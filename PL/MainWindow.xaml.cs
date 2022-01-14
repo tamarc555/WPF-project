@@ -146,7 +146,7 @@ namespace PL
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
-            this.Content = new hoursPage();
+            myFrame.Content = new hoursPage();
         }
 
     }
