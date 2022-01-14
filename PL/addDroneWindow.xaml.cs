@@ -275,7 +275,7 @@ namespace PL
         {
             MessageBox.Show("התהליך האוטומטי הופעל");
             Auto = true;
-            Worker = new BackgroundWorker();// { WorkerReportsProgress = true, WorkerSupportsCancellation = true };
+            Worker = new BackgroundWorker();
             Worker.WorkerReportsProgress = true;
             Worker.WorkerSupportsCancellation = true;
             Worker.DoWork += Worker_DoWork;
@@ -287,11 +287,12 @@ namespace PL
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
             bl.startDroneSimulator((int)e.Argument, updateDrone, checkStop);
-
         }
 
         private void manualButton_Click(object sender, RoutedEventArgs e)
         {
+            Auto = false;
+            Worker = null;
             MessageBox.Show("התהליך האוטומטי הופסק");
             Closing = true;
             this.Close();
