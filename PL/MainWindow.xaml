@@ -15,7 +15,7 @@
             <RowDefinition Height="400*"/>
         </Grid.RowDefinitions>
         <Border BorderThickness="1" HorizontalAlignment="Left" Height="554" Margin="750,0,0,0" VerticalAlignment="Center" Width="50" Background="White" Grid.Row="1"/>
-        <Border x:Name="myBorder" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="554" Margin="619,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="181" Background="White">
+        <Border x:Name="myBorder" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Height="554" Margin="613,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="181" Background="White">
         </Border>
 
         <Grid x:Name="UpGrid" HorizontalAlignment="Stretch" Height="auto" Grid.Row="0"
@@ -145,6 +145,7 @@
                 </StackPanel.Background>
             </StackPanel>
         </Button>
+        <Slider HorizontalAlignment="Left" Height="73" Margin="181,368,0,0" Grid.Row="1" VerticalAlignment="Top" Width="159" ValueChanged="Slider_ValueChanged"/>
 
     </Grid>
 </Window>
