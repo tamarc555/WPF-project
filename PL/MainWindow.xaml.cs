@@ -146,7 +146,9 @@ namespace PL
 
         private void Button_Click_8(object sender, RoutedEventArgs e)
         {
-          //  new hoursPage().
+
+            new hoursPage();
         }
+
     }
 }
