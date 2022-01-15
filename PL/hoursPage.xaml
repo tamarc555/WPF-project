@@ -9,7 +9,7 @@
       Title="hoursPage">
 
     <Grid Background="#FFDCF2F0">
-        <Button  HorizontalAlignment="Left" Height="38" Margin="387,480,0,0" VerticalAlignment="Top" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click">
+        <Button x:Name="connectButton"  HorizontalAlignment="Left" Height="38" Margin="387,480,0,0" VerticalAlignment="Top" Width="110" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click">
             <StackPanel Height="35" Width="100">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/connect4.png"/>

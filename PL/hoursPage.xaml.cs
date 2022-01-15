@@ -23,13 +23,12 @@ namespace PL
         public hoursPage()
         {
             InitializeComponent();
+            connectButton.IsEnabled = true;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            this.Content = new connectPage();
-            //Content = new connectPage();
-
+            //this.Content = new connectPage();
         }
     }
 }

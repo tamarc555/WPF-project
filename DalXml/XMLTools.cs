@@ -17,57 +17,51 @@ namespace Dal
         static XMLTools()
         {
             if (!Directory.Exists(dir))
-                 Directory.CreateDirectory(dir);
+                Directory.CreateDirectory(dir);
         }
         #region SaveLoadWithXElement
 
         //save a specific xml file according the name- throw exception in case of problems..
         //for the using with XElement..
 
-
         public static void SaveListToXMLElement(XElement rootElem, string filePath)
         {
-        try
-        {
-            rootElem.Save(@"xml" + filePath);
-        }
-        catch (Exception ex)
-        {
-            throw new LoadingException(@"xml" + filePath, $"fail to create xml file: {@"xml" + filePath}", ex);
-        }
-    }
-    //load a specific xml file according the name- throw exception in case of problems..
-    //for the using with XElement..
-    public static XElement LoadListFromXMLElement(string filePath)
-    {
-        try
-        {
-            if (File.Exists(@"xml" + filePath))
+            try
             {
-                return XElement.Load(@"xml" + filePath);
+                rootElem.Save(@"xml" + filePath);
             }
-            else
+            catch (Exception ex)
             {
-                    //XElement rootElem = new XElement(filePath);
-                    //if (dir + filePath == @"configurationXml.xml")
-                    //    rootElem.Add(new XElement("droneID", 1));
-                    //rootElem.Save(filePath);
-                    //return rootElem;
+                throw new LoadingException(@"xml" + filePath, $"fail to create xml file: {@"xml" + filePath}", ex);
+            }
+        }
+        //load a specific xml file according the name- throw exception in case of problems..
+        //for the using with XElement..
+        public static XElement LoadListFromXMLElement(string filePath)
+        {
+            try
+            {
+                if (File.Exists(@"xml" + filePath))
+                {
+                    return XElement.Load(@"xml" + filePath);
+                }
+                else
+                {
                     return new XElement(@"xml" + filePath);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new LoadingException(@"xml" + filePath, $"fail to load xml file: {@"xml" + filePath}", ex);
             }
         }
-        catch (Exception ex)
-        {
-            throw new LoadingException(@"xml" + filePath, $"fail to load xml file: {@"xml" + filePath}", ex);
-        }
-    }
-    #endregion
+        #endregion
 
-    #region SaveLoadWithXMLSerializer
+        #region SaveLoadWithXMLSerializer
 
-    //save a complete listin a specific file- throw exception in case of problems..
-    //for the using with XMLSerializer..
-    public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)
+        //save a complete listin a specific file- throw exception in case of problems..
+        //for the using with XMLSerializer..
+        public static void SaveListToXMLSerializer<T>(List<T> list, string filePath)
         {
             try
             {
@@ -106,5 +100,5 @@ namespace Dal
             }
         }
         #endregion
-  }
+    }
 }
