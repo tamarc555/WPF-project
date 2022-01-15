@@ -39,57 +39,73 @@ namespace BL
                 switch (myDrone.StatusOfDrone)
                 {
                     case  BO.Enum.DroneStatuses.available:
-                      //  Thread.Sleep(1000);
-                        parcelID = bl.nextParcel(myDrone);
-                        switch (parcelID, myDrone.Battary)
+                        lock (bl)
                         {
-                            case (0, 100):  //שוחרר מטעינה אבל אין חבילה
-                                //סיום תהליכון כפוי
-                                flag = false;
-                                break;
-                            case (0, _):  //פנוי ואין חבילה - שליחה לטעינה
-                                stationID = bl.findClosestStation(myDrone);
-                                if (stationID != -1)
-                                    bl.sendToCharge(bl.getDrone(myDrone.ID));
-                                break;
-                            case (_, _): //שויכה חבילה - שליחה
-                                bl.updateScheduled(bl.getDrone(myDrone.ID));
-                                break;
+                            //  Thread.Sleep(1000);
+                            parcelID = bl.nextParcel(myDrone);
+                            switch (parcelID, myDrone.Battary)
+                            {
+                                case (0, 100):  //שוחרר מטעינה אבל אין חבילה
+                                                //סיום תהליכון כפוי
+                                    flag = false;
+                                    break;
+                                case (0, _):  //פנוי ואין חבילה - שליחה לטעינה
+                                    stationID = bl.findClosestStation(myDrone);
+                                    if (stationID != -1)
+                                    {
+                                        bl.sendToCharge(bl.getDrone(myDrone.ID));
+                                    }
+                                    break;
+                                case (_, _): //שויכה חבילה - שליחה
+                                    bl.updateScheduled(bl.getDrone(myDrone.ID));
+                                    break;
+                            }
                         }
                         break;
                     case BO.Enum.DroneStatuses.scheduled:
-                      //  Thread.Sleep(1000);
-                        bl.updatePickedUp(bl.getDrone(myDrone.ID));
-                        break;
+                        lock (bl)
+                        {
+                            //  Thread.Sleep(1000);
+                            bl.updatePickedUp(bl.getDrone(myDrone.ID));
+                            break;
+                        }
                     case BO.Enum.DroneStatuses.maintenance :
-                      //  Thread.Sleep(1000);
-                        bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
-                        //switch (myDrone.Battary)
-                        //{
-                        //    case (100):  //הרחפן טעון- שחרור
-                        //        bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
-                        //        break;
-                        //    case (_):  //הרחפן לא הגיע ל100%
-                        //        break;
-                        //}
+                        lock (bl)
+                        {
+                            //  Thread.Sleep(1000);
+                            bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
+                            //switch (myDrone.Battary)
+                            //{
+                            //    case (100):  //הרחפן טעון- שחרור
+                            //        bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
+                            //        break;
+                            //    case (_):  //הרחפן לא הגיע ל100%
+                            //        break;
+                            //}
+                        }
                         break;
                     case BO.Enum.DroneStatuses.delivery:
-                      //  Thread.Sleep(1000);
-                        switch (myDrone.TheParcelInDelivery.StatusOfParcel)
+                        lock (bl)
                         {
-                            case (false):  //החבילה עוד לא נאספה
-                                bl.updatePickedUp(bl.getDrone(myDrone.ID));
-                                break;
-                            case (true):  //החבילה נאספה והיא בדרך
-                                bl.updateSupply(bl.getDrone(myDrone.ID));
-                                break;
+                            //  Thread.Sleep(1000);
+                            switch (myDrone.TheParcelInDelivery.StatusOfParcel)
+                            {
+                                case (false):  //החבילה עוד לא נאספה
+                                    bl.updatePickedUp(bl.getDrone(myDrone.ID));
+                                    break;
+                                case (true):  //החבילה נאספה והיא בדרך
+                                    bl.updateSupply(bl.getDrone(myDrone.ID));
+                                    break;
+                            }
                         }
                         break;
                     default:
                         throw new Exception("ERROR");
                 }
-               // Thread.Sleep(1000);
+               Thread.Sleep(1000);
                 update();
+                myDrone = bl.getDrone(myDrone.ID);
+
             } while (!checkStop()&&flag);
         }
 

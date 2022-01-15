@@ -2,12 +2,12 @@
 <ArrayOfDrone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Drone>
     <ID>1</ID>
-    <Model>B-8M</Model>
+    <Model>A-90</Model>
     <MaxWeigth>light</MaxWeigth>
   </Drone>
   <Drone>
     <ID>2</ID>
-    <Model>A-9k</Model>
+    <Model>G-3F</Model>
     <MaxWeigth>light</MaxWeigth>
   </Drone>
   <Drone>

@@ -201,11 +201,20 @@ namespace PL
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            if (_myFlag == true)
+            //if (_myFlag == true)
             {
                 DataGridCell cell = sender as DataGridCell;
-                DroneToList d = cell.DataContext as DroneToList;
-                new addDroneWindow(bl, d.ID).ShowDialog();
+                 DroneToList d = cell.DataContext as DroneToList;
+                //new addDroneWindow(bl, d.ID).ShowDialog();
+                int dronePlace = -1;
+                for (int i = 0; i<_myCollection.Count; i++)
+                {
+                    if (_myCollection[i].ID == d.ID)
+                        dronePlace = i;
+                }
+                if (dronePlace == -1) throw new IDdoesntExists("לא ניתן לגשת לנתוני הרחפן");
+                new addDroneWindow(bl,(DroneToList)_myCollection[dronePlace]).ShowDialog();
+
                 _myCollection.Clear();
                 List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
                 for (int i = 0; i < lst.Count; i++)

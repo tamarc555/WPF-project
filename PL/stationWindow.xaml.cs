@@ -57,7 +57,7 @@ namespace PL
         {
             DataGridCell cell = sender as DataGridCell;
             BlApi.BO.Drone d = cell.DataContext as BlApi.BO.Drone;
-            new addDroneWindow(bl, -1, d.ID).ShowDialog();
+            new addDroneWindow(bl, null, d.ID).ShowDialog();
         }
 
         private void updateButton_Click(object sender, RoutedEventArgs e)

@@ -137,7 +137,7 @@ namespace PL
             {
                 BlApi.BO.ParcelToList p = (BlApi.BO.ParcelToList)parcelToListDataGrid.SelectedItem;
                 BlApi.BO.Parcel p1 = bl.getParcel(p.ID);
-                new addDroneWindow(bl, -1, p1.TheDroneInParcel.ID).ShowDialog();
+                new addDroneWindow(bl, null, p1.TheDroneInParcel.ID).ShowDialog();
 
                 senderButton.Visibility = Visibility.Hidden;
                 targetButton.Visibility = Visibility.Hidden;
