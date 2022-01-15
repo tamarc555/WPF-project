@@ -24,6 +24,7 @@ namespace PL
     {
         private BlApi.IBL bl = new BL.BL();
         bool flag = false;
+        public static bool manager = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -89,6 +90,21 @@ namespace PL
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             myFrame.Content = new managerEnterce();
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            if (manager == true)
+                MessageBox.Show("התנתקת מהמערכת, לא תוכל לבצע שינויים נוספים\n נשמח לראותך שוב!");
+            if (manager == false)
+                MessageBox.Show("התנתקת מהמערכת, \n נשמח לראותך שוב!");
+            manager = false;
+            myFrame.Content = new homePage();
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            myFrame.Content = new delieveryPage();
         }
     }
 }

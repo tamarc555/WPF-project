@@ -33,8 +33,5 @@ namespace BlApi.BO
         {
             return "ID: " + id + " name: " + name;
         }
-
-
-
     }
 }

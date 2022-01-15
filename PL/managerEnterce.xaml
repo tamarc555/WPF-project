@@ -9,11 +9,17 @@
       Title="managerEnterce">
 
     <Grid Background="#FFDCF2F0">
-        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="20" Margin="61,125,0,0" Grid.Row="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black" TextChanged="NameTextBox_TextChanged"/>
-        <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="20" Margin="61,173,0,0" Grid.Row="1" VerticalAlignment="Top" Width="120" SelectionTextBrush="Black" BorderBrush="Black"/>
-        <Button x:Name="ManagerLogin" Content="המשך" HorizontalAlignment="Left" Height="19" Margin="44,133,0,0" VerticalAlignment="Top" Width="118" Background="#FFC8C9D0" Click="ManagerLogin_Click"/>
+        <Image HorizontalAlignment="Left" Height="247" Margin="243,99,0,0" VerticalAlignment="Top" Width="222" Source="/manager3.png"/>
 
-        <Button x:Name="exitManagment" Content="צא ממצב מנהל" HorizontalAlignment="Left" Height="19" Margin="63,213,0,0" Grid.Row="1" VerticalAlignment="Top" Width="118" Click="Button_Click_4"/>
-
+        <TextBox x:Name="NameTextBox" HorizontalAlignment="Left" Height="20" Margin="275,195,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" BorderBrush="Black" TextChanged="NameTextBox_TextChanged"/>
+        <PasswordBox x:Name="passwordTextBox" HorizontalAlignment="Left" Height="20" Margin="275,259,0,0" VerticalAlignment="Top" Width="120" SelectionTextBrush="Black" BorderBrush="Black"/>
+        <Button x:Name="ManagerLogin" HorizontalAlignment="Left" Height="31" Margin="322,291,0,0" VerticalAlignment="Top" Width="31" Background="{x:Null}" Click="ManagerLogin_Click" BorderBrush="{x:Null}">
+            <StackPanel Height="29" Width="28">
+                <StackPanel.Background>
+                    <ImageBrush ImageSource="/enter3.png"/>
+                </StackPanel.Background>
+            </StackPanel>
+        </Button>
+       
     </Grid>
 </Page>

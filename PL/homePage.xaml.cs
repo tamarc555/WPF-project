@@ -29,24 +29,23 @@ namespace PL
 
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
-            new listOfParcel(bl,flag).ShowDialog();
+            new listOfParcel(bl,MainWindow.manager).ShowDialog();
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            new listOfStation(bl, flag).ShowDialog();
+            new listOfStation(bl, MainWindow.manager).ShowDialog();
 
         }
 
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
-            new listOfCustomer(bl, flag).ShowDialog();
-
+            new listOfCustomer(bl, MainWindow.manager).ShowDialog();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new listOfDrone(bl, flag).ShowDialog();
+            new listOfDrone(bl, MainWindow.manager).ShowDialog();
         }
     }
 }

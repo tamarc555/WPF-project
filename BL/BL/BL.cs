@@ -49,7 +49,7 @@ namespace BL
                     var myParcel = (from parcel in getListParcel()
                                     where parcel.TheDroneInParcel.ID == droneToUpdate.ID && parcel.Delivered == null
                                     select parcel).FirstOrDefault();
-                    if (myParcel!=null)
+                    if (myParcel != null)
                     {
                         if (myParcel.PickedUp != null)
                         {
@@ -79,12 +79,12 @@ namespace BL
                         //}
                         //if (flag == false)
                         //{
-                            droneToUpdate.StatusOfDrone = DroneStatuses.available;
-                            droneToUpdate.DroneLocation = new location(r.NextDouble() * (33.5 - 29.3) + 29.3, r.NextDouble() * (36.3 - 33.7) + 33.7);
+                        droneToUpdate.StatusOfDrone = DroneStatuses.available;
+                        droneToUpdate.DroneLocation = new location(r.NextDouble() * (33.5 - 29.3) + 29.3, r.NextDouble() * (36.3 - 33.7) + 33.7);
                         //}
                     }
                     //flag = false;
-                        listDrone.Add(droneToUpdate);
+                    listDrone.Add(droneToUpdate);
 
                     //Drone sendDrone = new();
                     //sendDrone.ID = drone.ID;
@@ -472,20 +472,20 @@ namespace BL
                 //lock (dal)
                 //{
 
-                    tempDrone = getDrone(tempDrone.ID);
-                    if (tempDrone.StatusOfDrone != DroneStatuses.maintenance) throw new IDdoesntExists("this drone is not in charge\n");
-                    DalApi.DO.Station tempStation = ((List<DalApi.DO.Station>)dal.getPartOfStation(myLocation => tempDrone.DroneLocation.longitude == myLocation.Longitude && tempDrone.DroneLocation.latitude == myLocation.Latitude))[0];
+                tempDrone = getDrone(tempDrone.ID);
+                if (tempDrone.StatusOfDrone != DroneStatuses.maintenance) throw new IDdoesntExists("this drone is not in charge\n");
+                DalApi.DO.Station tempStation = ((List<DalApi.DO.Station>)dal.getPartOfStation(myLocation => tempDrone.DroneLocation.longitude == myLocation.Longitude && tempDrone.DroneLocation.latitude == myLocation.Latitude))[0];
 
-                    for (int i = 0; i < listDrone.Count; i++)
-                        if (listDrone[i].ID == tempDrone.ID)
-                        {
-                            // dal.releaseFromCharge((IDAL.DO.Drone)tempDrone.CopyPropertiesToNew(typeof(IDAL.DO.Drone)), (IDAL.DO.Station)tempStation.CopyPropertiesToNew(typeof(IDAL.DO.Station)));
-                            listDrone[i].StatusOfDrone = DroneStatuses.available;
-                            listDrone[i].Battary += timeInCharge * (double)dal.AskToCharge()[4];
-                            if (listDrone[i].Battary > 100) listDrone[i].Battary = 100;
-                        }
-                    tempStation.ChargeSlots++;
-                    dal.updateStation(tempStation);
+                for (int i = 0; i < listDrone.Count; i++)
+                    if (listDrone[i].ID == tempDrone.ID)
+                    {
+                        // dal.releaseFromCharge((IDAL.DO.Drone)tempDrone.CopyPropertiesToNew(typeof(IDAL.DO.Drone)), (IDAL.DO.Station)tempStation.CopyPropertiesToNew(typeof(IDAL.DO.Station)));
+                        listDrone[i].StatusOfDrone = DroneStatuses.available;
+                        listDrone[i].Battary += timeInCharge * (double)dal.AskToCharge()[4];
+                        if (listDrone[i].Battary > 100) listDrone[i].Battary = 100;
+                    }
+                tempStation.ChargeSlots++;
+                dal.updateStation(tempStation);
                 double x = listDrone[2].Battary;
                 //}
 
@@ -997,7 +997,7 @@ namespace BL
             {
                 return dal.getPartOfParcel(p => p.Scheduled == null
                                            && (WeightCategories)(p.Weight) <= drone.MaxWeigth
-                                           && calculateEnoughBattaryForDelievery(new Drone(drone.ID,drone.Model,drone.MaxWeigth,drone.Battary,drone.StatusOfDrone,drone.ParcelInDelivery,drone.DroneLocation), getParcel(p.ID)))
+                                           && calculateEnoughBattaryForDelievery(new Drone(drone.ID, drone.Model, drone.MaxWeigth, drone.Battary, drone.StatusOfDrone, drone.ParcelInDelivery, drone.DroneLocation), getParcel(p.ID)))
                                            .OrderByDescending(p => p.Priority)
                                            .ThenByDescending(p => p.Weight)
                           .FirstOrDefault().ID;
@@ -1007,38 +1007,38 @@ namespace BL
         public int findClosestStation(DroneToList myDrone)
         {
             Drone tempDrone = getDrone(myDrone.ID);
-                    Station tempStation = new();
-                    int i = 0;
-                    for (; i < listDrone.Count; i++)
+            Station tempStation = new();
+            int i = 0;
+            for (; i < listDrone.Count; i++)
+            {
+                if (listDrone[i].ID == tempDrone.ID)
+                {
+                    if (!(listDrone[i].StatusOfDrone == DroneStatuses.available)) throw new noAvailableDrone("the drone is not avalible for charge\n");
+                    List<Station> avalibleStations = (List<Station>)getAvailableStations();
+                    if (avalibleStations.Count == 0) throw new noAvailableStation("no avalible station\n");
+                    List<Station> enoughBattary = new();
+                    for (int j = 0; j < avalibleStations.Count; j++)
                     {
-                        if (listDrone[i].ID == tempDrone.ID)
+                        if (calculateMinBattaryRequired(getDrone(listDrone[i].ID), avalibleStations[j]) == true)
+                            enoughBattary.Add(avalibleStations[j]);
+                    }
+                    if (enoughBattary == null) return -1;
+                    List<Station> lst = (List<Station>)enoughBattary;
+                    double minDistance = listDrone[i].DroneLocation.calculateDistance(lst[0].StationLocation);
+                    int minDistanceIndex = 0;
+                    for (int j = 1; j < lst.Count; j++)
+                    {
+                        if (listDrone[i].DroneLocation.calculateDistance(lst[j].StationLocation) < minDistance)
                         {
-                            if (!(listDrone[i].StatusOfDrone == DroneStatuses.available)) throw new noAvailableDrone("the drone is not avalible for charge\n");
-                            List<Station> avalibleStations = (List<Station>)getAvailableStations();
-                            if (avalibleStations.Count == 0) throw new noAvailableStation("no avalible station\n");
-                            List<Station> enoughBattary = new();
-                            for (int j = 0; j < avalibleStations.Count; j++)
-                            {
-                                if (calculateMinBattaryRequired(getDrone(listDrone[i].ID), avalibleStations[j]) == true)
-                                    enoughBattary.Add(avalibleStations[j]);
-                            }
-                            if (enoughBattary == null) return -1;
-                            List<Station> lst = (List<Station>)enoughBattary;
-                            double minDistance = listDrone[i].DroneLocation.calculateDistance(lst[0].StationLocation);
-                            int minDistanceIndex = 0;
-                            for (int j = 1; j < lst.Count; j++)
-                            {
-                                if (listDrone[i].DroneLocation.calculateDistance(lst[j].StationLocation) < minDistance)
-                                {
-                                    minDistance = listDrone[i].DroneLocation.calculateDistance(lst[j].StationLocation);
-                                    minDistanceIndex = j;
-                                }
-                            }
-                            return lst[minDistanceIndex].ID;
+                            minDistance = listDrone[i].DroneLocation.calculateDistance(lst[j].StationLocation);
+                            minDistanceIndex = j;
                         }
                     }
-                return -1;
+                    return lst[minDistanceIndex].ID;
                 }
+            }
+            return -1;
+        }
 
         public void startDroneSimulator(int ID, Action update, Func<bool> checkStop)
         {

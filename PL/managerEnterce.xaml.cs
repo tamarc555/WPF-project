@@ -24,7 +24,6 @@ namespace PL
         public managerEnterce()
         {
             InitializeComponent();
-            exitManagment.Visibility = Visibility.Hidden;
 
         }
         private void ManagerLogin_Click(object sender, RoutedEventArgs e)
@@ -38,7 +37,8 @@ namespace PL
                 passwordTextBox.IsEnabled = false;
                 flag = true;
                 ManagerLogin.Visibility = Visibility.Hidden;
-                exitManagment.Visibility = Visibility.Visible;
+                MainWindow.manager = true;
+
             }
             else if (NameTextBox.Text == "Tamar" && passwordTextBox.Password == "tamar55")
             {
@@ -49,7 +49,7 @@ namespace PL
                 passwordTextBox.IsEnabled = false;
                 flag = true;
                 ManagerLogin.Visibility = Visibility.Hidden;
-                exitManagment.Visibility = Visibility.Visible;
+                MainWindow.manager = true;
             }
             else
             {
@@ -64,14 +64,5 @@ namespace PL
 
         }
 
-        private void Button_Click_4(object sender, RoutedEventArgs e)
-        {
-            exitManagment.Visibility = Visibility.Hidden;
-            ManagerLogin.Visibility = Visibility.Visible;
-            NameTextBox.IsEnabled = true;
-            passwordTextBox.IsEnabled = true;
-            flag = false;
-
-        }
     }
 }

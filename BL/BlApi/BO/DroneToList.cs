@@ -68,7 +68,6 @@ namespace BlApi.BO
             set { parcelInDelivery = value; }
         }
 
-
         public DroneToList(int _ID, string _model, WeightCategories _maxWeigth, double _battary, DroneStatuses _statusOfDrone, location _droneLocation, ParcelInDelivery _parcelInDelivery)  //ctor
         {
             id = _ID;

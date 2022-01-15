@@ -32,6 +32,10 @@
     <None Remove="drone.png" />
     <None Remove="droneLocation.png" />
     <None Remove="dronesDelivers.png" />
+    <None Remove="enter3.png" />
+    <None Remove="enterID.png" />
+    <None Remove="enterID1.png" />
+    <None Remove="enterID2.png" />
     <None Remove="group.png" />
     <None Remove="home.png" />
     <None Remove="home2.png" />
@@ -59,7 +63,9 @@
     <None Remove="out.png" />
     <None Remove="out2.png" />
     <None Remove="parcel.png" />
+    <None Remove="parcelFromCustomer.png" />
     <None Remove="parcelLocation.png" />
+    <None Remove="parcelToCustomer.png" />
     <None Remove="pause.png" />
     <None Remove="play.png" />
     <None Remove="plus.png" />
@@ -106,6 +112,10 @@
     <Resource Include="drone.png" />
     <Resource Include="droneLocation.png" />
     <Resource Include="dronesDelivers.png" />
+    <Resource Include="enter3.png" />
+    <Resource Include="enterID.png" />
+    <Resource Include="enterID1.png" />
+    <Resource Include="enterID2.png" />
     <Resource Include="group.png" />
     <Resource Include="home.png" />
     <Resource Include="home2.png" />
@@ -133,7 +143,9 @@
     <Resource Include="out.png" />
     <Resource Include="out2.png" />
     <Resource Include="parcel.png" />
+    <Resource Include="parcelFromCustomer.png" />
     <Resource Include="parcelLocation.png" />
+    <Resource Include="parcelToCustomer.png" />
     <Resource Include="pause.png" />
     <Resource Include="play.png" />
     <Resource Include="plus.png" />
