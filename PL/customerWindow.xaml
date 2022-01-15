@@ -125,6 +125,8 @@
                     <DataGridTextColumn x:Name="theDroneInParcelColumn1" Binding="{Binding TheDroneInParcel}" Header="The Drone In Parcel" Width="SizeToHeader"/>
                 </DataGrid.Columns>
             </DataGrid>
+            <Image HorizontalAlignment="Left" Height="42" Margin="29,233,0,0" VerticalAlignment="Top" Width="180" Source="/parcelFromCustomer.png"/>
+            <Image HorizontalAlignment="Left" Height="38" Margin="24,436,0,0" VerticalAlignment="Top" Width="180" Source="/parcelToCustomer.png"/>
 
         </Grid>
         <Button x:Name="addButton" HorizontalAlignment="Left" Height="49" Margin="628,561,0,0" VerticalAlignment="Top" Width="57" Background="{x:Null}" BorderBrush="{x:Null}" Click="addButton_Click">

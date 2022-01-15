@@ -9,41 +9,41 @@ using BlApi;
 namespace BlApi.BO
 {
 
-        public class Customer
+    public class Customer
+    {
+        private int id;
+
+        public int ID
         {
-            private int id;
+            get { return id; }
+            set { id = value; }
+        }
 
-            public int ID
-            {
-                get { return id; }
-                set { id = value; }
-            }
+        private string name;
 
-            private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; }
+        }
 
-            public string Name
-            {
-                get { return name; }
-                set { name = value; }
-            }
+        private string phone;
 
-            private string phone;
+        public string Phone
+        {
+            get { return phone; }
+            set { phone = value; }
+        }
 
-            public string Phone
-            {
-                get { return phone; }
-                set { phone = value; }
-            }
+        private location customerLocation;
 
-            private location customerLocation;
+        public location CustomerLocation
+        {
+            get { return customerLocation; }
+            set { customerLocation = value; }
+        }
 
-            public location CustomerLocation
-            {
-                get { return customerLocation; }
-                set { customerLocation = value; }
-            }
-
-        private List<Parcel> parcelFromCustomer ;
+        private List<Parcel> parcelFromCustomer;
 
         public List<Parcel> ParcelFromCustomer
         {
@@ -88,6 +88,6 @@ namespace BlApi.BO
                 tempList2 += parcelToCustomer[i].ToString() + "\n";
             return "ID: " + id + " name: " + name + " phone: " + phone + " location: " + customerLocation + "parcel From Customer: " + tempList1 + "parcel To Customer: " + tempList2;
         }
-        }
+    }
 }
 

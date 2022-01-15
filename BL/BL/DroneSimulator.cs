@@ -27,7 +27,7 @@ namespace BL
             //bool pickedUp = false;
             //Customer myCustomer = null;
             //Maintenance myMaintenance = Maintenance.Starting;
-            
+
             //void initDelievry(int ID)
             //{
             //    myParcel = bl.getParcel(ID);

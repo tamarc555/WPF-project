@@ -13,7 +13,7 @@
         <TextBox HorizontalAlignment="Left" Height="19" Margin="162,151,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201"/>
         <TextBox HorizontalAlignment="Left" Height="19" Margin="162,191,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="201"/>
         <TextBox HorizontalAlignment="Left" Height="79" Margin="162,267,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="294"/>
-        <Button  HorizontalAlignment="Left" Height="28" Margin="159,361,0,0" VerticalAlignment="Top" Width="61" Background="{x:Null}" BorderBrush="{x:Null}">
+        <Button  HorizontalAlignment="Left" Height="28" Margin="159,361,0,0" VerticalAlignment="Top" Width="61" Background="{x:Null}" BorderBrush="{x:Null}" Click="Button_Click">
             <StackPanel Height="20" Width="53">
                 <StackPanel.Background>
                     <ImageBrush ImageSource="/send2.png"/>
