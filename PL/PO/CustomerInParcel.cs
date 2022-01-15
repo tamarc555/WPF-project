@@ -47,7 +47,5 @@ namespace PO
             return "ID: " + id + " name: " + name;
         }
 
-
-
     }
 }

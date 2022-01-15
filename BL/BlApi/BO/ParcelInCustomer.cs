@@ -50,7 +50,6 @@ namespace BlApi.BO
             set { theCustomer = value; }
         }
 
-
         public ParcelInCustomer(int _ID, WeightCategories _weight, Priorities _priority, ParcelStatuses _theParcelStatus, CustomerInParcel _theCustomer)  //ctor
         {
             id = _ID;

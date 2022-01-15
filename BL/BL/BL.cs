@@ -16,16 +16,11 @@ namespace BL
         public static IBL Instance { get => instance; }
 
         internal DalApi.IDal dal = DalApi.DalFactory.GetDal();
-        private List<DroneToList> listDrone; // = new List<DroneToList>();  //האובייקט שמתחזק את רשימת הרחפנים
-        //readonly IDAL.IDal dal;
+        private List<DroneToList> listDrone;  //האובייקט שמתחזק את רשימת הרחפנים
 
         public BL()
         {
             listDrone = new List<DroneToList>();
-
-
-            //dal.initialize();
-
             DroneToList temp = new();
 
             initializedDrone();
@@ -35,11 +30,8 @@ namespace BL
         {
             lock (dal)
             {
-                //bool flag = false;
                 foreach (var drone in dal.getListDrone())
                 {
-                    //listDrone.Add(new DroneToList { ID = drone.ID, Model = drone.Model, MaxWeigth = (WeightCategories)drone.MaxWeigth });
-
                     Random r = new Random();
                     DroneToList droneToUpdate = new();
                     droneToUpdate.ID = drone.ID;
@@ -66,33 +58,10 @@ namespace BL
                     }
                     else
                     {
-                        //List<Station> listS = (List<Station>)getListStations();
-                        //for (int i = 0; i < listS.Count; i++)
-                        //{
-                        //    for (int j = 0; j < listS[i].ListDroneInCharge.Count; j++)
-                        //        if (listS[i].ListDroneInCharge[j].ID == droneToUpdate.ID)
-                        //        {
-                        //            droneToUpdate.StatusOfDrone = DroneStatuses.maintenance;
-                        //            droneToUpdate.DroneLocation = listS[i].StationLocation;
-                        //            flag = true;
-                        //        }
-                        //}
-                        //if (flag == false)
-                        //{
                         droneToUpdate.StatusOfDrone = DroneStatuses.available;
                         droneToUpdate.DroneLocation = new location(r.NextDouble() * (33.5 - 29.3) + 29.3, r.NextDouble() * (36.3 - 33.7) + 33.7);
-                        //}
                     }
-                    //flag = false;
                     listDrone.Add(droneToUpdate);
-
-                    //Drone sendDrone = new();
-                    //sendDrone.ID = drone.ID;
-                    //sendDrone.Model = drone.Model;
-                    //sendDrone.MaxWeigth = (WeightCategories)drone.MaxWeigth;
-                    //sendDrone.DroneLocation.longitude = droneToUpdate.DroneLocation.longitude;
-                    //sendDrone.DroneLocation.latitude = droneToUpdate.DroneLocation.latitude;
-                    //sendToCharge(sendDrone);
                 }
             }
         }
@@ -162,7 +131,6 @@ namespace BL
                 {
 
                     dal.addCustomer(new DalApi.DO.Customer(tempCustomer.ID, tempCustomer.Name, tempCustomer.Phone, tempCustomer.CustomerLocation.longitude, tempCustomer.CustomerLocation.latitude));
-                    //dal.addCustomer((IDAL.DO.Customer)tempCustomer.CopyPropertiesToNew(typeof(IDAL.DO.Customer)));
                 }
             }
             catch (Exception ex)
@@ -186,9 +154,7 @@ namespace BL
             {
                 lock (dal)
                 {
-
                     dal.addParcel(new DalApi.DO.Parcel(tempParcel.ID, tempParcel.Sender.ID, tempParcel.Target.ID, (DO.WeightCategories)tempParcel.Weight, (DO.Priorities)tempParcel.Priority, tempParcel.Requested, tempParcel.Scheduled, tempParcel.PickedUp, tempParcel.Delivered, 0));
-
                 }
             }
             catch (Exception ex)
@@ -219,7 +185,6 @@ namespace BL
             {
                 lock (dal)
                 {
-
                     Drone tempDrone = getDrone(tempDroneID);
                     if ((tempDrone.StatusOfDrone == DroneStatuses.delivery) || (tempDrone.StatusOfDrone == DroneStatuses.scheduled)) throw new DeleteProblemException("the drone is used\n");
                     dal.deleteDrone(tempDroneID);
@@ -290,7 +255,6 @@ namespace BL
             }
         }
 
-
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void updateScheduled(Drone tempDrone)  //שיוך חבילה לרחפן
         {
@@ -349,8 +313,6 @@ namespace BL
             {
                 lock (dal)
                 {
-
-
                     List<DalApi.DO.Parcel> parcelRequested = (List<DalApi.DO.Parcel>)dal.getPartOfParcel(parcel => parcel.DroneId == tempDrone.ID);
                     if (parcelRequested == null) throw new UpdateProblemException("this drone is not associated with any parcel\n");
                     Parcel tempParcel = getParcel(parcelRequested[0].ID);
@@ -360,7 +322,6 @@ namespace BL
                     for (int i = 0; i < listDrone.Count; i++)
                         if (listDrone[i].ID == tempDrone.ID)
                         {
-                            //if (listDrone[i].ParcelInDelivery.StatusOfParcel != false) throw new UpdateProblemException("the parcel is not waiting to be picked up\n");
                             listDrone[i].Battary -= (listDrone[i].DroneLocation.calculateDistance(getCustomer(tempParcel.Sender.ID).CustomerLocation) * dal.AskToCharge()[0]);
                             listDrone[i].DroneLocation = getCustomer(tempParcel.Sender.ID).CustomerLocation;
                             listDrone[i].ParcelInDelivery.StatusOfParcel = true; //בדרך ליעד
@@ -380,8 +341,6 @@ namespace BL
             {
                 lock (dal)
                 {
-
-
                     var theParcelInDelievery = (from drone in listDrone
                                                 where (drone.ID == tempDrone.ID) && (drone.StatusOfDrone == DroneStatuses.delivery) && (drone.ParcelInDelivery != null)
                                                 select drone).ToList();
@@ -394,8 +353,6 @@ namespace BL
                             listDrone[i].DroneLocation = getCustomer(listDrone[i].ParcelInDelivery.Target.ID).CustomerLocation;
                             listDrone[i].StatusOfDrone = DroneStatuses.available;
                             listDrone[i].ParcelInDelivery = new();
-                            //dal.deleteParcel(listDrone[i].ParcelInDelivery.ID);
-                            //listDrone[i].ParcelInDelivery = null;
                         }
                 }
             }
@@ -411,7 +368,6 @@ namespace BL
             {
                 lock (dal)
                 {
-
                     dal.getDrone(tempDrone.ID);  //check if the drone exists
                     Station tempStation = new();
                     int i = 0;
@@ -421,11 +377,7 @@ namespace BL
                         {
                             if (!(listDrone[i].StatusOfDrone == DroneStatuses.available)) throw new noAvailableDrone("the drone is not avalible for charge\n");
                             List<Station> avalibleStations = (List<Station>)getAvailableStations();
-                            //List<Station> avalibleStations = (List<Station>)getPartOfStation(station => station.ChargeSlots > 0);
                             if (avalibleStations.Count == 0) throw new noAvailableStation("no avalible station\n");
-                            //List<Station> enoughBattary = (List<Station>)(from s in avalibleStations
-                            //                  where calculateMinBattaryRequired(getDrone(listDrone[i].ID), s) == true
-                            //                select s); // מחזירה את כל התחנות שי לרחפן מספיק בטריה להגיע אליהם
                             List<Station> enoughBattary = new();
                             for (int j = 0; j < avalibleStations.Count; j++)
                             {
@@ -448,9 +400,7 @@ namespace BL
                             listDrone[i].Battary -= (listDrone[i].DroneLocation.calculateDistance(tempStation.StationLocation) * dal.AskToCharge()[(int)WeightCategories.free]);
                             listDrone[i].DroneLocation = tempStation.StationLocation;
                             listDrone[i].StatusOfDrone = DroneStatuses.maintenance;
-
                             tempStation.ChargeSlots--;
-                            // dal.updateStation((IDAL.DO.Station)tempStation.CopyPropertiesToNew(typeof(IDAL.DO.Station)));
                             dal.updateStation(new DalApi.DO.Station(tempStation.ID, tempStation.Name, tempStation.StationLocation.longitude, tempStation.StationLocation.latitude, tempStation.ChargeSlots));
                             break;
                         }
@@ -469,9 +419,6 @@ namespace BL
         {
             try
             {
-                //lock (dal)
-                //{
-
                 tempDrone = getDrone(tempDrone.ID);
                 if (tempDrone.StatusOfDrone != DroneStatuses.maintenance) throw new IDdoesntExists("this drone is not in charge\n");
                 DalApi.DO.Station tempStation = ((List<DalApi.DO.Station>)dal.getPartOfStation(myLocation => tempDrone.DroneLocation.longitude == myLocation.Longitude && tempDrone.DroneLocation.latitude == myLocation.Latitude))[0];
@@ -479,7 +426,6 @@ namespace BL
                 for (int i = 0; i < listDrone.Count; i++)
                     if (listDrone[i].ID == tempDrone.ID)
                     {
-                        // dal.releaseFromCharge((IDAL.DO.Drone)tempDrone.CopyPropertiesToNew(typeof(IDAL.DO.Drone)), (IDAL.DO.Station)tempStation.CopyPropertiesToNew(typeof(IDAL.DO.Station)));
                         listDrone[i].StatusOfDrone = DroneStatuses.available;
                         listDrone[i].Battary += timeInCharge * (double)dal.AskToCharge()[4];
                         if (listDrone[i].Battary > 100) listDrone[i].Battary = 100;
@@ -487,8 +433,6 @@ namespace BL
                 tempStation.ChargeSlots++;
                 dal.updateStation(tempStation);
                 double x = listDrone[2].Battary;
-                //}
-
             }
             catch (Exception ex)
             {
@@ -502,7 +446,6 @@ namespace BL
             {
                 lock (dal)
                 {
-
                     dal.updateDrone(new DalApi.DO.Drone(tempDrone.ID, tempDrone.Model, (DO.WeightCategories)tempDrone.MaxWeigth));
                     for (int i = 0; i < listDrone.Count; i++)
                     {
@@ -553,16 +496,7 @@ namespace BL
                     int tempChargeSlot = 0, tempName = 0;
                     if (tempStation.ChargeSlots >= 0) tempChargeSlot = tempStation.ChargeSlots;
                     if (tempStation.Name > 0) tempName = tempStation.Name;
-                    tempStation = getStation(tempStation.ID);  //check if the station exists
-                                                               //if (tempChargeSlot != 0)
-                                                               //{
-                                                               //    int counter = 0;
-                                                               //    for (int i = 0; i < listDrone.Count; i++)  //count the num of drones in charge in this station
-                                                               //        if (listDrone[i].DroneLocation.longitude == tempStation.StationLocation.longitude && listDrone[i].DroneLocation.latitude == tempStation.StationLocation.latitude)
-                                                               //            counter++;
-                                                               //    if (counter > tempChargeSlot) throw new RangeException("there is not enough slots for drones that are already in charge\n");
-                                                               //    tempStation.ChargeSlots = tempChargeSlot - counter;
-                                                               //}
+                    tempStation = getStation(tempStation.ID);
                     if (tempChargeSlot >= 0) tempStation.ChargeSlots = tempChargeSlot;
                     if (tempName > 0) tempStation.Name = tempName;
                     dal.updateStation(new DalApi.DO.Station(tempStation.ID, tempStation.Name, tempStation.StationLocation.longitude, tempStation.StationLocation.latitude, tempStation.ChargeSlots));
@@ -580,7 +514,6 @@ namespace BL
             {
                 lock (dal)
                 {
-
                     DalApi.DO.Station tempStation = dal.getStation(myID);
                     location l = new location(tempStation.Longitude, tempStation.Latitude);
                     List<Drone> _listDroneInCharge = new List<Drone>();
@@ -615,8 +548,6 @@ namespace BL
                 throw new IDdoesntExists("Can't get this station\n", ex);
             }
         }
-
-
 
         [MethodImpl(MethodImplOptions.Synchronized)]
         public StationToList getStationToList(int myID)
@@ -750,25 +681,6 @@ namespace BL
             }
         }
 
-        //public IEnumerable<Station> getPartOfStation(Predicate<Station> stationCondition)
-        //{
-        //    List<Station> newStationList = new();
-        //    List<IDAL.DO.Station> tempStationList = (List<IDAL.DO.Station>)dal.getPartOfStation((System.Predicate<IDAL.DO.Station>)stationCondition.CopyPropertiesToNew(typeof(System.Predicate<IDAL.DO.Station>)));
-        //    for (int i = 0; i < tempStationList.Count; i++)
-        //        newStationList.Add(getStation(tempStationList[i].ID));
-        //    return newStationList;
-        //}
-
-        /*
-        public IEnumerable<Customer> getPartOfCustomer(Predicate<Customer> customerCondition)
-        {
-            List<Customer> newCustomerList = new();
-            List<DalApi.DO.Customer> tempCustomerList = (List<DalApi.DO.Customer>)dal.getPartOfCustomer((System.Predicate<DalApi.DO.Customer>)customerCondition.CopyPropertiesToNew(typeof(System.Predicate<DalApi.DO.Customer>)));
-            for (int i = 0; i < tempCustomerList.Count; i++)
-                newCustomerList.Add(getCustomer(tempCustomerList[i].ID));
-            return newCustomerList;
-        }
-        */
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<myDroneToList> getPartOfDrone(Predicate<DroneToList> DroneCondition, List<myDroneToList> myList = null)
         {
@@ -812,20 +724,6 @@ namespace BL
             }
         }
 
-        /*public IEnumerable<Parcel> getPartOfParcel(Predicate<Parcel> parcelCondition)
-        {
-            //var listToPredicate = dal.getPartOfParcel()
-
-            return new List<Parcel>();
-
-            //    List<Parcel> newParcelList = new();
-            //List<IDAL.DO.Parcel> tempParcelList = dal.getPartOfParcel((System.Predicate<IDAL.DO.Parcel>)parcelCondition;
-
-            ////List<IDAL.DO.Parcel> tempParcelList = (List<IDAL.DO.Parcel>)dal.getPartOfParcel((System.Predicate<IDAL.DO.Parcel>)parcelCondition.CopyPropertiesToNew(typeof(System.Predicate<IDAL.DO.Parcel>)));
-            //for (int i = 0; i < tempParcelList.Count; i++)
-            //    newParcelList.Add(getParcel(tempParcelList[i].ID));
-            //return newParcelList;
-        }*/
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Parcel> getNotConnectedParcel()
         {
@@ -840,14 +738,6 @@ namespace BL
             }
         }
 
-        //public IEnumerable<Station> getPartOfCustomer(Predicate<Station> stationCondition)
-        //{
-        //    List<Station> newStationList = new();
-        //    List<DalApi.DO.Station> tempStationList = (List<DalApi.DO.Station>)dal.getPartOfStation((System.Predicate<DalApi.DO.Station>)stationCondition.CopyPropertiesToNew(typeof(System.Predicate<DalApi.DO.Station>)));
-        //    for (int i = 0; i < tempStationList.Count; i++)
-        //        newStationList.Add(getStation(tempStationList[i].ID));
-        //    return newStationList;
-        //}
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> getListStations()
         {
@@ -856,8 +746,6 @@ namespace BL
 
                 var listOfStation = (from station in dal.getListStations()
                                      select getStation(station.ID)).ToList();
-                //select new Station() { ID = station.ID, Name = station.Name, StationLocation = new(station.Longitude, station.Latitude), ChargeSlots = station.ChargeSlots, /*ListDroneInCharge = new List<Drone>()*/ };
-
                 return listOfStation;
             }
         }
@@ -866,7 +754,6 @@ namespace BL
         {
             lock (dal)
             {
-
                 var listOfStation = (from station in dal.getListStations()
                                      select getStation(station.ID)).ToList();
                 List<StationToList> listOfStationToList = new List<StationToList>();
@@ -904,7 +791,6 @@ namespace BL
 
                 var listOfCustomer = (from customer in dal.getListCustomer()
                                       select getCustomer(customer.ID)).ToList();
-                //select new Customer() { ID = customer.ID, Name = customer.Name, Phone = customer.Phone, CustomerLocation = new(customer.Longitude, customer.Latitude), ParcelFromCustomer = getCustomer(customer.ID) };
                 List<CustomerToList> listOfCustomerToList = new List<CustomerToList>();
                 int counterp = 0, counterd = 0;
                 for (int i = 0; i < listOfCustomer.Count; i++)
@@ -930,7 +816,6 @@ namespace BL
 
                 var listOfParcel = (from parcel in dal.getListParcel()
                                     select getParcel(parcel.ID)).ToList();
-                //select new Parcel() { ID = parcel.ID, Sender = new(parcel.SenderID, getCustomer(parcel.SenderID).Name), Target = new(parcel.TargetID, getCustomer(parcel.TargetID).Name) , Weight = (WeightCategories)parcel.Weight, Priority = (Priorities)parcel.Priority, Requested = parcel.Requested, Scheduled = parcel.Scheduled,  PickedUp = parcel.PickedUp, Delivered = parcel.Delivered, TheDroneInParcel = new(parcel.DroneId, getDrone(parcel.DroneId).Battary, getDrone(parcel.DroneId).ParcelLocation)  };
                 return listOfParcel;
             }
         }
@@ -942,7 +827,6 @@ namespace BL
 
                 var listOfCustomer = (from customer in dal.getListCustomer()
                                       select getCustomer(customer.ID)).ToList();
-                //select new Customer() { ID = customer.ID, Name = customer.Name, Phone = customer.Phone, CustomerLocation = new(customer.Longitude, customer.Latitude), ParcelFromCustomer = getCustomer(customer.ID) };
                 return listOfCustomer;
             }
         }
@@ -955,7 +839,6 @@ namespace BL
 
                 var listOfDrone = (from drone in dal.getListDrone()
                                    select getDrone(drone.ID)).ToList();
-                //select new Customer() { ID = customer.ID, Name = customer.Name, Phone = customer.Phone, CustomerLocation = new(customer.Longitude, customer.Latitude), ParcelFromCustomer = getCustomer(customer.ID) };
                 return listOfDrone;
             }
         }
@@ -964,7 +847,6 @@ namespace BL
         {
             lock (dal)
             {
-
                 double myDistance = tempDrone.DroneLocation.calculateDistance(tempStation.StationLocation);
                 double battaryRequired = dal.AskToCharge()[(int)weightCategoey] * myDistance;
                 if (battaryRequired <= tempDrone.Battary)
@@ -1020,38 +902,38 @@ namespace BL
         public int findClosestStation(Drone myDrone)
         {
             Drone tempDrone = getDrone(myDrone.ID);
-                    Station tempStation = new();
-                    int i = 0;
-                    for (; i < listDrone.Count; i++)
+            Station tempStation = new();
+            int i = 0;
+            for (; i < listDrone.Count; i++)
+            {
+                if (listDrone[i].ID == tempDrone.ID)
+                {
+                    if (!(listDrone[i].StatusOfDrone == DroneStatuses.available)) throw new noAvailableDrone("the drone is not avalible for charge\n");
+                    List<Station> avalibleStations = (List<Station>)getAvailableStations();
+                    if (avalibleStations.Count == 0) throw new noAvailableStation("no avalible station\n");
+                    List<Station> enoughBattary = new();
+                    for (int j = 0; j < avalibleStations.Count; j++)
                     {
-                        if (listDrone[i].ID == tempDrone.ID)
+                        if (calculateMinBattaryRequired(getDrone(listDrone[i].ID), avalibleStations[j]) == true)
+                            enoughBattary.Add(avalibleStations[j]);
+                    }
+                    if (enoughBattary == null) return -1;
+                    List<Station> lst = (List<Station>)enoughBattary;
+                    double minDistance = listDrone[i].DroneLocation.calculateDistance(lst[0].StationLocation);
+                    int minDistanceIndex = 0;
+                    for (int j = 1; j < lst.Count; j++)
+                    {
+                        if (listDrone[i].DroneLocation.calculateDistance(lst[j].StationLocation) < minDistance)
                         {
-                            if (!(listDrone[i].StatusOfDrone == DroneStatuses.available)) throw new noAvailableDrone("the drone is not avalible for charge\n");
-                            List<Station> avalibleStations = (List<Station>)getAvailableStations();
-                            if (avalibleStations.Count == 0) throw new noAvailableStation("no avalible station\n");
-                            List<Station> enoughBattary = new();
-                            for (int j = 0; j < avalibleStations.Count; j++)
-                            {
-                                if (calculateMinBattaryRequired(getDrone(listDrone[i].ID), avalibleStations[j]) == true)
-                                    enoughBattary.Add(avalibleStations[j]);
-                            }
-                            if (enoughBattary == null) return -1;
-                            List<Station> lst = (List<Station>)enoughBattary;
-                            double minDistance = listDrone[i].DroneLocation.calculateDistance(lst[0].StationLocation);
-                            int minDistanceIndex = 0;
-                            for (int j = 1; j < lst.Count; j++)
-                            {
-                                if (listDrone[i].DroneLocation.calculateDistance(lst[j].StationLocation) < minDistance)
-                                {
-                                    minDistance = listDrone[i].DroneLocation.calculateDistance(lst[j].StationLocation);
-                                    minDistanceIndex = j;
-                                }
-                            }
-                            return lst[minDistanceIndex].ID;
+                            minDistance = listDrone[i].DroneLocation.calculateDistance(lst[j].StationLocation);
+                            minDistanceIndex = j;
                         }
                     }
-                return -1;
+                    return lst[minDistanceIndex].ID;
                 }
+            }
+            return -1;
+        }
 
         public void startDroneSimulator(int ID, Action update, Func<bool> checkStop)
         {

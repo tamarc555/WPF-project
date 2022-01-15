@@ -85,12 +85,6 @@ namespace DalObject
             for (int i = 0; i < DataSource.parcelArray.Count; i++)
             if ((DataSource.parcelArray[i].TargetID == tempCustomerID || DataSource.parcelArray[i].SenderID == tempCustomerID )&& DataSource.parcelArray[i].Delivered == null)
                 throw new DeleteProblemException("there is a parcel on the way for this customer\n");
-
-
-            // var customerToDelete = from parcel in parcelArray
-            //                  where parcel.TargetID == tempCustomerID
-            //                select parcel.TargetID;
-            // if (customerToDelete != null) throw new DeleteProblemException("there is a parcel on the way for this customer\n");
             DataSource.customerArray.RemoveAt(customerIndex);
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -166,8 +160,6 @@ namespace DalObject
             int droneIndex = DataSource.droneArray.FindIndex(x => x.ID == tempDrone.ID);
             DataSource.droneArray.RemoveAt(droneIndex);
             DataSource.droneArray.Insert(droneIndex, tempDrone);
-            //DataSource.droneArray.ForEach(delegate (DalApi.DO.Drone d) { if (tempDrone.ID == d.ID) d.Model = tempDrone.Model; });
-            //remove and add?
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void updateStation(Station tempStation)
@@ -181,17 +173,11 @@ namespace DalObject
                     DataSource.stationArray.Add(tempStation);
                     break;
                 }
-                // if (tempStation.ID == s.ID) if (tempStation.Name != '\n') s.Name = tempStation.Name;
-                // if (tempStation.ChargeSlots != '\n') s.ChargeSlots = tempStation.ChargeSlots;
             }
-            //remove and add?
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
         public void updateCustomer(Customer tempCustomer)
         {
-            //DataSource.customerArray.ForEach(delegate (DalApi.DO.Customer c) { if (tempCustomer.ID == c.ID) c = tempCustomer));
-            //remove and add?
-
             for (int i = 0; i < DataSource.customerArray.Count; i++)
             {
                 if (tempCustomer.ID == DataSource.customerArray[i].ID)
@@ -200,8 +186,6 @@ namespace DalObject
                     DataSource.customerArray.Add(tempCustomer);
                     break;
                 }
-                // if (tempStation.ID == s.ID) if (tempStation.Name != '\n') s.Name = tempStation.Name;
-                // if (tempStation.ChargeSlots != '\n') s.ChargeSlots = tempStation.ChargeSlots;
             }
         }
 
@@ -240,8 +224,6 @@ namespace DalObject
             return tempParcel;
         }
 
-
-
         //show lists:
         [MethodImpl(MethodImplOptions.Synchronized)]
         public IEnumerable<Station> getListStations()
@@ -262,9 +244,6 @@ namespace DalObject
                     //Console.WriteLine(stationArray[i]);
                 }
             }
-            //var list = from station in stationArray
-            //           where stationCondition(station)
-            //           select station;
             return list;
         }
         [MethodImpl(MethodImplOptions.Synchronized)]
@@ -320,7 +299,5 @@ namespace DalObject
                         select droneCharge).ToList();
             return list;
         }
-
-
     }
 }

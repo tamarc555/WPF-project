@@ -40,9 +40,6 @@ namespace DS
             stationArray.Add(tempStation);
             tempStation.ID = 2; tempStation.Name = 2; tempStation.Longitude = 29.561560; tempStation.Latitude = 34.941743; tempStation.ChargeSlots = 15;
             stationArray.Add(tempStation);
-            //tempStation.ID = 3; tempStation.Name = 3; tempStation.Longitude = 29.561560; tempStation.Latitude = 34.941743; tempStation.ChargeSlots = 2;
-            //stationArray.Add(tempStation);
-            //change the location
 
             //5 drones:
             DalApi.DO.Drone tempDrone = new();
@@ -102,7 +99,6 @@ namespace DS
             parcelArray.Add(tempParcel);
             tempParcel.ID = 10; tempParcel.SenderID = 8; tempParcel.TargetID = 1; tempParcel.Weight = DO.WeightCategories.heavy; tempParcel.Priority = DO.Priorities.emergency; tempParcel.Requested = DateTime.Now;
             parcelArray.Add(tempParcel);
-
         }
     }
 }
