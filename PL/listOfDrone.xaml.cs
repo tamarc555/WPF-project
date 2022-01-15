@@ -235,11 +235,14 @@ namespace PL
             var lst = from drone in (IEnumerable<DroneToList>)droneToListDataGrid.ItemsSource
                       group drone by drone.StatusOfDrone into statusGroup
                       select new { StatusOfDrone = statusGroup.Key, lstSt = statusGroup };
-            //_myCollection = new ObservableCollection<BlApi.BO.Drone>();
-            _myCollection.Clear();
+            ////_myCollection = new ObservableCollection<BlApi.BO.Drone>();
+            //  _myCollection.Clear();
             foreach (var item in lst)
                 foreach (var temp in item.lstSt)
+                {
+                    _myCollection.Remove((DroneToList)temp);
                     _myCollection.Add((DroneToList)temp);
+                }
             //droneToListDataGrid.ItemsSource = _myCollection;
         }
 
