@@ -30,8 +30,6 @@ namespace PL
         {
             InitializeComponent();
         }
-
-        
         public listOfCustomer(BlApi.IBL bL, bool myFlag)
         {
             _myFlag = myFlag;
@@ -48,7 +46,7 @@ namespace PL
                 deleteButton.Visibility = Visibility.Hidden;
             }
         }
-
+        
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (_myFlag == true)

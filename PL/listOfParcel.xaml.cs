@@ -26,7 +26,6 @@ namespace PL
 
         private BlApi.IBL bl;
 
-
         public listOfParcel()
         {
             InitializeComponent();
@@ -51,29 +50,11 @@ namespace PL
             }
         }
 
-        //private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    try
-        //    { 
-        //    DataGridCell cell = sender as DataGridCell;
-        //    ParcelToList d = cell.DataContext as ParcelToList;
-        //    if (d.ID == 0) throw new IDdoesntExists("לא ניתן לעדכן חבילה")
-        //    new parcelWindow(bl, d.ID).ShowDialog();
-        //    parcelToListDataGrid.ItemsSource = bl.getListParcelToList();
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-        //    }
-        //}
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            //add
+            //add:
             new parcelWindow(bl).ShowDialog();
             parcelToListDataGrid.ItemsSource = bl.getListParcelToList();
-
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -91,7 +72,6 @@ namespace PL
             {
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e) //menu bottun

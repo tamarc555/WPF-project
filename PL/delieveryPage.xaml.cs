@@ -33,11 +33,6 @@ namespace PL
             {
                 bl.getCustomer(int.Parse(IDtextBox.Text));
                 new customerWindow(bl, int.Parse(IDtextBox.Text)).ShowDialog();
-                
-                //customerWindow(bl, int.Parse(IDtextBox.Text));
-
-                //new listOfParcel(bl, MainWindow.manager).ShowDialog();
-
             }
             catch (Exception ex)
             {

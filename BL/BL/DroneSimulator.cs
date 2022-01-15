@@ -15,34 +15,20 @@ namespace BL
         {
             var bl = blImp;
             var dal = bl.dal;
-            //var myDrone = bl.getPartOfDrone(x => x.ID == ID).FirstOrDefault();
             var myDrone = bl.getDrone(ID);
             double timeInC = 0;
             int parcelID = 0;
             int stationID = 0;
             bool flag = true;
-            //Station bs = null;
-            //double myDistance = 0.0;
-            //int battaruUsage = 0;
-            //Parcel? myParcel = null;
-            //bool pickedUp = false;
-            //Customer myCustomer = null;
-            //Maintenance myMaintenance = Maintenance.Starting;
 
-            //void initDelievry(int ID)
-            //{
-            //    myParcel = bl.getParcel(ID);
-            //    myCustomer = bl.getCustomer((int)(pickedUp ? myParcel.Target.ID : myParcel.Sender.ID));
-            //}
             do
             {
-                
+
                 switch (myDrone.StatusOfDrone)
                 {
-                    case  BO.Enum.DroneStatuses.available:
+                    case BO.Enum.DroneStatuses.available:
                         lock (bl)
                         {
-                            //  Thread.Sleep(1000);
                             parcelID = bl.nextParcel(myDrone);
                             switch (parcelID, myDrone.Battary)
                             {
@@ -70,17 +56,17 @@ namespace BL
                             bl.updatePickedUp(bl.getDrone(myDrone.ID));
                             break;
                         }
-                    case BO.Enum.DroneStatuses.maintenance :
+                    case BO.Enum.DroneStatuses.maintenance:
                         lock (bl)
                         {
                             //  Thread.Sleep(1000);
                             bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
                             switch (timeInC)
                             {
-                               case (2):  //הרחפן טעון- שחרור
-                                  bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
+                                case (2):  //הרחפן טעון- שחרור
+                                    bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
                                     timeInC = 0;
-                                   break;
+                                    break;
                                 case (_):  //הרחפן לא הגיע ל100%
                                     timeInC += 0.5;
                                     break;
@@ -90,7 +76,6 @@ namespace BL
                     case BO.Enum.DroneStatuses.delivery:
                         lock (bl)
                         {
-                            //  Thread.Sleep(1000);
                             switch (myDrone.TheParcelInDelivery.StatusOfParcel)
                             {
                                 case (false):  //החבילה עוד לא נאספה
@@ -105,16 +90,13 @@ namespace BL
                     default:
                         throw new Exception("ERROR");
                 }
-               Thread.Sleep(1000);
+                Thread.Sleep(1000);
                 update();
                 Thread.Sleep(1000);
                 myDrone = bl.getDrone(myDrone.ID);
                 Thread.Sleep(1000);
 
-            } while (!checkStop()&&flag);
+            } while (!checkStop() && flag);
         }
-
-
-
     }
 }
