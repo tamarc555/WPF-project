@@ -31,7 +31,8 @@ namespace BlApi
         public Drone getDrone(int myID);
         public IEnumerable<Drone> getListDrone();
         // public IEnumerable<DroneToList> getPartOfDrone(Predicate<DroneToList> DroneCondition1, Predicate<DroneToList> DroneCondition2 = null);
-        public IEnumerable<DroneToList> getPartOfDrone(Predicate<DroneToList> DroneCondition, IEnumerable<DroneToList> myList = null);
+        public IEnumerable<myDroneToList> getPartOfDrone(Predicate<DroneToList> DroneCondition, List<myDroneToList> myList = null);
+
         public IEnumerable<DroneToList> getListDroneToList();
 
         public void updateScheduled(Drone tempDrone);

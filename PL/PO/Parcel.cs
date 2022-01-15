@@ -1,6 +1,7 @@
 ﻿using PO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,15 +11,21 @@ namespace PL
 {
     namespace PO
     {
-        public class Parcel
+        public class Parcel : INotifyPropertyChanged
         {
+            public event PropertyChangedEventHandler PropertyChanged;
 
             private int id;
 
             public int ID
             {
                 get { return id; }
-                set { id = value; }
+                set 
+                { 
+                    id = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+                }
             }
 
             private int sender;
@@ -26,7 +33,10 @@ namespace PL
             public int Sender
             {
                 get { return sender; }
-                set { sender = value; }
+                set { sender = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Sender"));
+                }
             }
 
             private int target;
@@ -34,7 +44,10 @@ namespace PL
             public int Target
             {
                 get { return target; }
-                set { target = value; }
+                set { target = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Target"));
+                }
             }
 
             private WeightCategories weight;
@@ -42,7 +55,10 @@ namespace PL
             public WeightCategories Weight
             {
                 get { return weight; }
-                set { weight = value; }
+                set { weight = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Weight"));
+                }
             }
 
             private Priorities priority;
@@ -50,7 +66,10 @@ namespace PL
             public Priorities Priority
             {
                 get { return priority; }
-                set { priority = value; }
+                set { priority = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Priority"));
+                }
             }
 
             private int theDroneInParcel;
@@ -58,7 +77,10 @@ namespace PL
             public int TheDroneInParcel
             {
                 get { return theDroneInParcel; }
-                set { theDroneInParcel = value; }
+                set { theDroneInParcel = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("TheDroneInParcel"));
+                }
             }
 
             private DateTime? requested;
@@ -66,7 +88,10 @@ namespace PL
             public DateTime? Requested
             {
                 get { return requested; }
-                set { requested = value; }
+                set { requested = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Requested"));
+                }
             }
 
             private DateTime? scheduled;
@@ -74,7 +99,10 @@ namespace PL
             public DateTime? Scheduled
             {
                 get { return scheduled; }
-                set { scheduled = value; }
+                set { scheduled = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Scheduled"));
+                }
             }
 
             private DateTime? pickedUp;
@@ -82,7 +110,10 @@ namespace PL
             public DateTime? PickedUp
             {
                 get { return pickedUp; }
-                set { pickedUp = value; }
+                set { pickedUp = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("PickedUp"));
+                }
             }
 
             private DateTime? delivered;
@@ -90,7 +121,10 @@ namespace PL
             public DateTime? Delivered
             {
                 get { return delivered; }
-                set { delivered = value; }
+                set { delivered = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Delivered"));
+                }
             }
 
 

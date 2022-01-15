@@ -2,6 +2,7 @@
 using PO;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,14 +10,19 @@ namespace PL
 {
     namespace PO
     {
-        public class Station
+        public class Station : INotifyPropertyChanged
         {
+            public event PropertyChangedEventHandler PropertyChanged;
+
             private int id;
 
             public int ID
             {
                 get { return id; }
-                set { id = value; }
+                set { id = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("ID"));
+                }
             }
 
             private int name;
@@ -24,7 +30,10 @@ namespace PL
             public int Name
             {
                 get { return name; }
-                set { name = value; }
+                set { name = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Name"));
+                }
             }
 
             private double longitude;
@@ -32,7 +41,10 @@ namespace PL
             public double Longitude
             {
                 get { return longitude; }
-                set { longitude = value; }
+                set { longitude = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Longitude"));
+                }
             }
 
             private double latitude;
@@ -40,7 +52,10 @@ namespace PL
             public double Latitude
             {
                 get { return latitude; }
-                set { latitude = value; }
+                set { latitude = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("Latitude"));
+                }
             }
 
 
@@ -49,7 +64,10 @@ namespace PL
             public int ChargeSlots
             {
                 get { return chargeSlots; }
-                set { chargeSlots = value; }
+                set { chargeSlots = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("ChargeSlots"));
+                }
             }
 
             private List<Drone> listDroneInCharge;
@@ -57,7 +75,10 @@ namespace PL
             public List<Drone> ListDroneInCharge
             {
                 get { return listDroneInCharge; }
-                set { listDroneInCharge = value; }
+                set { listDroneInCharge = value;
+                    if (PropertyChanged != null)
+                        PropertyChanged(this, new PropertyChangedEventArgs("ListDroneInCharge"));
+                }
             }
 
 

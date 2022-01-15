@@ -1,5 +1,4 @@
-﻿//using PL.PO;
-using BlApi.BO;
+﻿using PL.PO;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,7 +28,7 @@ namespace PL
        // public event PropertyChangedEventHandler PropertyChanged;
         private BlApi.IBL bl;
         bool _myFlag = false;
-        ObservableCollection<BlApi.BO.DroneToList> _myCollection = new ObservableCollection<BlApi.BO.DroneToList>();
+        ObservableCollection<DroneToList> _myCollection = new ObservableCollection<DroneToList>();
         //static readonly BlApi.IBL bl = BlApi.BlFactory.GetBl();
         //ObservableCollection<BlApi.BO.DroneToList> _myCollection = new(bl.getListDroneToList());
         //public ObservableCollection<BlApi.BO.DroneToList> _MyCollection
@@ -53,7 +52,7 @@ namespace PL
             bl = bL;
             List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
             for (int i = 0; i < lst.Count; i++)
-                _myCollection.Add(lst[i]);
+                _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation.ToString(), lst[i].ParcelInDelivery.ID));
 
             droneToListDataGrid.DataContext = _myCollection;
             //List<BlApi.BO.Drone> lst = (List<BlApi.BO.Drone>)bl.getListDrone();
@@ -77,18 +76,25 @@ namespace PL
                 return;
             if (StatusSelector.Text != "")
             {
+                
+                List<BlApi.BO.myDroneToList> myList = new List<BlApi.BO.myDroneToList>();
+                for (int i = 0; i < _myCollection.Count; i++)
+                    myList.Add(new BlApi.BO.myDroneToList(_myCollection[i].ID, _myCollection[i].Model, (BO.Enum.WeightCategories)_myCollection[i].MaxWeigth, _myCollection[i].Battary, (BO.Enum.DroneStatuses)_myCollection[i].StatusOfDrone, _myCollection[i].DroneLocation, _myCollection[i].ParcelInDelivery));
+
+                List<BlApi.BO.myDroneToList> lst = (List<BlApi.BO.myDroneToList>)bl.getPartOfDrone(drone => (int)drone.MaxWeigth == (int)weightSelector.SelectedItem, myList);
                 _myCollection.Clear();
-                List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getPartOfDrone(drone => (int)drone.MaxWeigth == (int)weightSelector.SelectedItem, (IEnumerable<BlApi.BO.DroneToList>)droneToListDataGrid.ItemsSource);
                 for (int i = 0; i < lst.Count; i++)
-                    _myCollection.Add(lst[i]);
+                    _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation, lst[i].ParcelInDelivery));
+
                 //droneToListDataGrid.ItemsSource = bl.getPartOfDrone(drone => (int)drone.MaxWeigth == (int)weightSelector.SelectedItem, (IEnumerable<BlApi.BO.DroneToList>)droneToListDataGrid.ItemsSource);
             }
             else
             {
                 _myCollection.Clear();
-                List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getPartOfDrone(drone => (int)drone.MaxWeigth == (int)weightSelector.SelectedItem);
+                List<BlApi.BO.myDroneToList> lst = (List<BlApi.BO.myDroneToList>)bl.getPartOfDrone(drone => (int)drone.MaxWeigth == (int)weightSelector.SelectedItem);
                 for (int i = 0; i < lst.Count; i++)
-                    _myCollection.Add(lst[i]);
+                    _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation, lst[i].ParcelInDelivery));
+
                 //droneToListDataGrid.ItemsSource = bl.getPartOfDrone(drone => (int)drone.MaxWeigth == (int)weightSelector.SelectedItem);
             }
         }
@@ -123,11 +129,16 @@ namespace PL
                 //for (int i = 0; i < lst.Count; i++)
                 //    _myCollection.Add(lst[i]);
                 //droneToListDataGrid.ItemsSource = _myCollection;
+                List<BlApi.BO.myDroneToList> myList = new List<BlApi.BO.myDroneToList>();
+                for (int i = 0; i < _myCollection.Count; i++)
+                    myList.Add(new BlApi.BO.myDroneToList(_myCollection[i].ID, _myCollection[i].Model, (BO.Enum.WeightCategories)_myCollection[i].MaxWeigth, _myCollection[i].Battary, (BO.Enum.DroneStatuses)_myCollection[i].StatusOfDrone, _myCollection[i].DroneLocation, _myCollection[i].ParcelInDelivery));
+                List<BlApi.BO.myDroneToList> lst = (List<BlApi.BO.myDroneToList>)bl.getPartOfDrone(drone => (int)drone.StatusOfDrone == (int)StatusSelector.SelectedItem, myList);
 
                 _myCollection.Clear();
-                List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getPartOfDrone(drone => (int)drone.StatusOfDrone == (int)StatusSelector.SelectedItem, (IEnumerable<BlApi.BO.DroneToList>)droneToListDataGrid.ItemsSource);
-                for (int i = 0; i < lst.Count; i++)
-                    _myCollection.Add(lst[i]);
+               
+                 for (int i = 0; i < lst.Count; i++)
+                    _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation, lst[i].ParcelInDelivery));
+
                 //droneToListDataGrid.ItemsSource = bl.getPartOfDrone(drone => (int)drone.StatusOfDrone == (int)StatusSelector.SelectedItem, (IEnumerable< BlApi.BO.DroneToList>)droneToListDataGrid.ItemsSource);
             }
             else
@@ -138,10 +149,11 @@ namespace PL
                 //        _myCollection.Add(lst[i]);
                 //    droneToListDataGrid.ItemsSource = _myCollection;
                 _myCollection.Clear();
-                List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getPartOfDrone(drone => (int)drone.StatusOfDrone == (int)StatusSelector.SelectedItem);
+                List<BlApi.BO.myDroneToList> lst = (List<BlApi.BO.myDroneToList>)bl.getPartOfDrone(drone => (int)drone.StatusOfDrone == (int)StatusSelector.SelectedItem);
                 for (int i = 0; i < lst.Count; i++)
-                    _myCollection.Add(lst[i]);
-               // droneToListDataGrid.ItemsSource = bl.getPartOfDrone(drone => (int)drone.StatusOfDrone == (int)StatusSelector.SelectedItem);
+                    _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation, lst[i].ParcelInDelivery));
+
+                // droneToListDataGrid.ItemsSource = bl.getPartOfDrone(drone => (int)drone.StatusOfDrone == (int)StatusSelector.SelectedItem);
 
             }
         }
@@ -152,7 +164,7 @@ namespace PL
             _myCollection.Clear();
             List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
             for (int i = 0; i < lst.Count; i++)
-                _myCollection.Add(lst[i]);
+                _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation.ToString(), lst[i].ParcelInDelivery.ID));
             /* droneToListDataGrid.ItemsSource = bl.getListDroneToList();*/
             // droneToListDataGrid.ItemsSource = _MyCollection;
         }
@@ -172,7 +184,7 @@ namespace PL
             _myCollection.Clear();
             List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
             for (int i = 0; i < lst.Count; i++)
-                _myCollection.Add(lst[i]);
+                _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation.ToString(), lst[i].ParcelInDelivery.ID));
             //_myCollection = new();
             //List<BO.Drone> lst = (List<BO.Drone>)bl.getListDrone();
             //for (int i = 0; i < lst.Count; i++)
@@ -197,7 +209,7 @@ namespace PL
                 _myCollection.Clear();
                 List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
                 for (int i = 0; i < lst.Count; i++)
-                    _myCollection.Add(lst[i]);
+                    _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation.ToString(), lst[i].ParcelInDelivery.ID));
                 /*droneToListDataGrid.ItemsSource = bl.getListDroneToList();*/
             }
 
@@ -243,8 +255,8 @@ namespace PL
             try
             {
                 DroneToList d = (DroneToList)droneToListDataGrid.SelectedItem;
-                if (d.ParcelInDelivery.ID == 0) throw new RangeException("לרחפן זה אין חבילה שמשוייכת אליו");
-                new parcelWindow(bl, d.ParcelInDelivery.ID).ShowDialog();
+                if (d.ParcelInDelivery == 0) throw new RangeException("לרחפן זה אין חבילה שמשוייכת אליו");
+                new parcelWindow(bl, d.ParcelInDelivery).ShowDialog();
 
             }
             catch (Exception ex)

@@ -15,7 +15,8 @@ namespace BL
         {
             var bl = blImp;
             var dal = bl.dal;
-            var myDrone = bl.getPartOfDrone(x => x.ID == ID).FirstOrDefault();
+            //var myDrone = bl.getPartOfDrone(x => x.ID == ID).FirstOrDefault();
+            var myDrone = bl.getDrone(ID);
             int parcelID = 0;
             int stationID = 0;
             bool flag = true;
@@ -34,11 +35,11 @@ namespace BL
             //}
             do
             {
-
-                switch (myDrone)
+                
+                switch (myDrone.StatusOfDrone)
                 {
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.available }:
-                        //  Thread.Sleep(1000);
+                      //  Thread.Sleep(1000);
                         parcelID = bl.nextParcel(myDrone);
                         switch (parcelID, myDrone.Battary)
                         {
@@ -57,11 +58,11 @@ namespace BL
                         }
                         break;
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.scheduled }:
-                        //  Thread.Sleep(1000);
+                      //  Thread.Sleep(1000);
                         bl.updatePickedUp(bl.getDrone(myDrone.ID));
                         break;
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.maintenance }:
-                        //  Thread.Sleep(1000);
+                      //  Thread.Sleep(1000);
                         bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
                         //switch (myDrone.Battary)
                         //{
@@ -73,7 +74,7 @@ namespace BL
                         //}
                         break;
                     case DroneToList { StatusOfDrone: BO.Enum.DroneStatuses.delivery }:
-                        //  Thread.Sleep(1000);
+                      //  Thread.Sleep(1000);
                         switch (myDrone.ParcelInDelivery.StatusOfParcel)
                         {
                             case (false):  //החבילה עוד לא נאספה
@@ -93,29 +94,6 @@ namespace BL
         }
 
 
-        void startDroneSimulator(int ID, Action update, Func<bool> checkStop)
-        {
-
-            //void startDroneSimulator(int myDroneID, Action update, Func<bool> checkStop)
-            //{
-            //    var myDrone = getPartOfDrone(x => x.ID == myDroneID).FirstOrDefault();
-            //    int parcelID = 0;
-            //    int stationID = 0;
-            //    Station bs = null;
-            //    double myDistance = 0.0;
-            //    int battaruUsage = 0;
-            //    Parcel? myParcel = null;
-            //    bool pickedUp = false;
-            //    Customer myCustomer = null;
-            //    //Maintenance myMaintenance = Maintenance.Starting;
-
-            //    if (myDrone.Battary < 10)
-
-
-            //       
-            //    //myDrone
-            //}
-        }
 
     }
 }
