@@ -43,14 +43,7 @@ namespace PL
                 deliveredDatePicker.IsEnabled = false;
                 theDroneInParcelTextBox.IsEnabled = false;
             }
-            //if (num != 0)  //update
-            //{
-            //    addButton.Visibility = Visibility.Hidden;
-            //    BlApi.BO.Parcel p = bl.getParcel(num);
-            //    Parcel dataContextParcel = new Parcel(p.ID, p.Sender.ID, p.Target.ID, (WeightCategories)p.Weight, (Priorities)p.Priority, p.TheDroneInParcel.ID, p.Requested, p.Scheduled, p.PickedUp, p.Delivered);
-            //    this.DataContext = dataContextParcel;
-            //    iDTextBox.IsEnabled = false;
-        //}
+            
             if (num != 0)  //הצגת נתונים
             {
                 addButton.Visibility = Visibility.Hidden;
@@ -86,23 +79,6 @@ namespace PL
                 MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
-
-        //public class NotBooleanToVisibilityConvereter : IValueConverter
-        //{
-        //    public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
-        //    {
-        //        bool boolValue = (bool)value;
-        //        if (boolValue) return Visibility.Hidden;
-        //        else return Visibility.Visible;
-        //    }
-
-        //    public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
-        //    {
-        //        throw new NotImplementedException();
-        //    }
-        //}
-
     }
-
 }
 

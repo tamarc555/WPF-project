@@ -27,7 +27,7 @@ namespace PL
         private BlApi.IBL bl;
         bool _myFlag = false;
         ObservableCollection<DroneToList> _myCollection = new ObservableCollection<DroneToList>();
-        
+
         public listOfDrone()
         {
             InitializeComponent();
@@ -55,7 +55,7 @@ namespace PL
 
         private void weightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if ((weightSelector.IsLoaded) == false||weightSelector.SelectedItem==null)
+            if ((weightSelector.IsLoaded) == false || weightSelector.SelectedItem == null)
                 return;
             if (StatusSelector.Text != "")
             {
@@ -89,7 +89,7 @@ namespace PL
                     myList.Add(new BlApi.BO.myDroneToList(_myCollection[i].ID, _myCollection[i].Model, (BO.Enum.WeightCategories)_myCollection[i].MaxWeigth, _myCollection[i].Battary, (BO.Enum.DroneStatuses)_myCollection[i].StatusOfDrone, _myCollection[i].DroneLocation, _myCollection[i].ParcelInDelivery));
                 List<BlApi.BO.myDroneToList> lst = (List<BlApi.BO.myDroneToList>)bl.getPartOfDrone(drone => (int)drone.StatusOfDrone == (int)StatusSelector.SelectedItem, myList);
                 _myCollection.Clear();
-                 for (int i = 0; i < lst.Count; i++)
+                for (int i = 0; i < lst.Count; i++)
                     _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation, lst[i].ParcelInDelivery));
             }
             else
@@ -138,15 +138,15 @@ namespace PL
             if (_myFlag == true)
             {
                 DataGridCell cell = sender as DataGridCell;
-                 DroneToList d = cell.DataContext as DroneToList;
+                DroneToList d = cell.DataContext as DroneToList;
                 int dronePlace = -1;
-                for (int i = 0; i<_myCollection.Count; i++)
+                for (int i = 0; i < _myCollection.Count; i++)
                 {
                     if (_myCollection[i].ID == d.ID)
                         dronePlace = i;
                 }
                 if (dronePlace == -1) throw new IDdoesntExists("לא ניתן לגשת לנתוני הרחפן");
-                new addDroneWindow(bl,(DroneToList)_myCollection[dronePlace]).ShowDialog();
+                new addDroneWindow(bl, (DroneToList)_myCollection[dronePlace]).ShowDialog();
             }
 
         }
@@ -156,43 +156,41 @@ namespace PL
             var lst = from drone in (IEnumerable<DroneToList>)droneToListDataGrid.ItemsSource
                       group drone by drone.StatusOfDrone into statusGroup
                       select new { StatusOfDrone = statusGroup.Key, lstSt = statusGroup };
-            ////_myCollection = new ObservableCollection<BlApi.BO.Drone>();
-            //  _myCollection.Clear();
             foreach (var item in lst)
                 foreach (var temp in item.lstSt)
                 {
                     _myCollection.Remove((DroneToList)temp);
                     _myCollection.Add((DroneToList)temp);
-            //droneToListDataGrid.ItemsSource = _myCollection;
+                }
         }
 
-        private void Button_Click_2(object sender, RoutedEventArgs e)
-        {
-            try
+            private void Button_Click_2(object sender, RoutedEventArgs e)
             {
-                DroneToList d = (DroneToList)droneToListDataGrid.SelectedItem;
-                bl.deleteDrone(d.ID);
-                droneToListDataGrid.ItemsSource = bl.getListDroneToList();
-                MessageBox.Show("הרחפן נמחק בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                try
+                {
+                    DroneToList d = (DroneToList)droneToListDataGrid.SelectedItem;
+                    bl.deleteDrone(d.ID);
+                    droneToListDataGrid.ItemsSource = bl.getListDroneToList();
+                    MessageBox.Show("הרחפן נמחק בהצלחה", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
 
-        private void Button_Click_3(object sender, RoutedEventArgs e)
-        {
-            try
+            private void Button_Click_3(object sender, RoutedEventArgs e)
             {
-                DroneToList d = (DroneToList)droneToListDataGrid.SelectedItem;
-                if (d.ParcelInDelivery == 0) throw new RangeException("לרחפן זה אין חבילה שמשוייכת אליו");
-                new parcelWindow(bl, d.ParcelInDelivery).ShowDialog();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                try
+                {
+                    DroneToList d = (DroneToList)droneToListDataGrid.SelectedItem;
+                    if (d.ParcelInDelivery == 0) throw new RangeException("לרחפן זה אין חבילה שמשוייכת אליו");
+                    new parcelWindow(bl, d.ParcelInDelivery).ShowDialog();
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message, "ERROR", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
     }
-}
