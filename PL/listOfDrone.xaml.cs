@@ -201,7 +201,7 @@ namespace PL
 
         private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            //if (_myFlag == true)
+            if (_myFlag == true)
             {
                 DataGridCell cell = sender as DataGridCell;
                  DroneToList d = cell.DataContext as DroneToList;
@@ -215,11 +215,11 @@ namespace PL
                 if (dronePlace == -1) throw new IDdoesntExists("לא ניתן לגשת לנתוני הרחפן");
                 new addDroneWindow(bl,(DroneToList)_myCollection[dronePlace]).ShowDialog();
 
-                _myCollection.Clear();
-                List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
-                for (int i = 0; i < lst.Count; i++)
-                    _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation.ToString(), lst[i].ParcelInDelivery.ID));
-                /*droneToListDataGrid.ItemsSource = bl.getListDroneToList();*/
+                //_myCollection.Clear();
+                //List<BlApi.BO.DroneToList> lst = (List<BlApi.BO.DroneToList>)bl.getListDroneToList();
+                //for (int i = 0; i < lst.Count; i++)
+                //    _myCollection.Add(new DroneToList(lst[i].ID, lst[i].Model, (WeightCategories)lst[i].MaxWeigth, lst[i].Battary, (DroneStatuses)lst[i].StatusOfDrone, lst[i].DroneLocation.ToString(), lst[i].ParcelInDelivery.ID));
+                ///*droneToListDataGrid.ItemsSource = bl.getListDroneToList();*/
             }
 
         }

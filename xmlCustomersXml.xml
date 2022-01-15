@@ -4,28 +4,28 @@
     <ID>211487152</ID>
     <Name>תמר כהן</Name>
     <Phone>0586793848</Phone>
-    <Longitude>31.5</Longitude>
-    <Latitude>30.2</Latitude>
+    <Longitude>31.96530</Longitude>
+    <Latitude>34.76807</Latitude>
   </Customer>
   <Customer>
     <ID>211526298</ID>
     <Name>איילת חותה</Name>
     <Phone>0507246858</Phone>
-    <Longitude>31.9</Longitude>
-    <Latitude>30.6</Latitude>
+    <Longitude>32.30936</Longitude>
+    <Latitude>35.19307</Latitude>
   </Customer>
   <Customer>
     <ID>2</ID>
     <Name>אריאל כהן</Name>
     <Phone>0586793845</Phone>
-    <Longitude>30.8</Longitude>
-    <Latitude>31.6</Latitude>
+    <Longitude>32.32614</Longitude>
+    <Latitude>34.86208</Latitude>
   </Customer>
   <Customer>
     <ID>211345678</ID>
     <Name>שלמה</Name>
     <Phone>0505870090</Phone>
-    <Longitude>30</Longitude>
-    <Latitude>30.5</Latitude>
+    <Longitude>31.51608</Longitude>
+    <Latitude>34.44961</Latitude>
   </Customer>
 </xmlCustomersXml.xml>
