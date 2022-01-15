@@ -3,15 +3,8 @@
   <Station>
     <ID>2</ID>
     <Name>952</Name>
-    <Longitude>31.2</Longitude>
-    <Latitude>31.2</Latitude>
-    <ChargeSlots>5</ChargeSlots>
-  </Station>
-  <Station>
-    <ID>1</ID>
-    <Name>852</Name>
-    <Longitude>31.763894</Longitude>
-    <Latitude>35.197574</Latitude>
-    <ChargeSlots>5</ChargeSlots>
+    <Longitude>32.06532</Longitude>
+    <Latitude>34.82071</Latitude>
+    <ChargeSlots>9</ChargeSlots>
   </Station>
 </ArrayOfStation>

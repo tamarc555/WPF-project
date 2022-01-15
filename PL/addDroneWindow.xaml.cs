@@ -294,7 +294,6 @@ namespace PL
             try
             {
                 bl.releaseFromCharge(bl.getDrone(int.Parse(iDTextBox.Text)), double.Parse(timeInChargeBox.Text));
-                //updateDroneView();
                 BlApi.BO.Drone tempDrone1 = bl.getDrone(int.Parse(iDTextBox.Text));
                 //DroneToList myUpdateDrone = new DroneToList(tempDrone1.ID, tempDrone1.Model, (WeightCategories)tempDrone1.MaxWeigth, tempDrone1.Battary, (DroneStatuses)tempDrone1.StatusOfDrone, tempDrone1.DroneLocation.ToString(), tempDrone1.TheParcelInDelivery.ID);
                 //myWindowDrone.StatusOfDrone = myUpdateDrone.StatusOfDrone;
@@ -403,14 +402,14 @@ namespace PL
 
         private void Worker_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            updateDroneView();
+            updateDroneView(bl.getDrone(myWindowDrone.ID));
             Thread.Sleep(1000);
         }
         private void Worker_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             Auto = false;
             Worker = null;
-            updateDroneView();
+            updateDroneView(bl.getDrone(myWindowDrone.ID));
             MessageBox.Show("התהליך האוטומטי הושלם");
             //BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
             //PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);
@@ -438,13 +437,12 @@ namespace PL
             }
         }
 
-        private void updateDroneView()
+        private void updateDroneView(BlApi.BO.Drone tempD)
         {
             //    lock(bl)
             ////    {
 
             //Drone tempD = bl.getDrone((int)e.ProgressPercentage);
-            BlApi.BO.Drone tempD = bl.getDrone(int.Parse(iDTextBox.Text));
             myWindowDrone.Model = tempD.Model;
             myWindowDrone.StatusOfDrone = (DroneStatuses)tempD.StatusOfDrone;
             myWindowDrone.DroneLocation = tempD.DroneLocation.ToString();
