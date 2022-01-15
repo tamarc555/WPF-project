@@ -178,4 +178,8 @@
     </Page>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="icons\" />
+  </ItemGroup>
+
 </Project>
