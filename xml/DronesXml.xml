@@ -20,4 +20,9 @@
     <Model>TH-9</Model>
     <MaxWeigth>medium</MaxWeigth>
   </Drone>
+  <Drone>
+    <ID>5</ID>
+    <Model>T-68</Model>
+    <MaxWeigth>medium</MaxWeigth>
+  </Drone>
 </ArrayOfDrone>

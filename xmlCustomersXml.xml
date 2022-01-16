@@ -22,10 +22,10 @@
     <Latitude>34.86208</Latitude>
   </Customer>
   <Customer>
-    <ID>211345678</ID>
-    <Name>שלמה</Name>
-    <Phone>0505870090</Phone>
-    <Longitude>31.51608</Longitude>
-    <Latitude>34.44961</Latitude>
+    <ID>211234123</ID>
+    <Name>נורית</Name>
+    <Phone>0587639820</Phone>
+    <Longitude>30.92837</Longitude>
+    <Latitude>33.92845</Latitude>
   </Customer>
 </xmlCustomersXml.xml>

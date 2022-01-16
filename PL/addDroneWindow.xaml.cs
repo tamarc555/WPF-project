@@ -63,7 +63,7 @@ namespace PL
                 automatic.Visibility = Visibility.Hidden;
                 manualButton.Visibility = Visibility.Hidden;
             }
-            if (tempDr.ID > 0) //עדכון רחפן
+            else if (tempDr.ID > 0 ) //עדכון רחפן
             {
                 myWindowDrone = tempDr;
                 this.DataContext = tempDr;
@@ -74,7 +74,7 @@ namespace PL
                 statusOfDroneComboBox.Text = tempDr.StatusOfDrone.ToString();
 
             }
-            if (num2 != 0)
+            else if (num2 != 0)
             {
                 BlApi.BO.Drone tempD = bl.getDrone(num2);
                 PO.DroneToList d = new PO.DroneToList(tempD.ID, tempD.Model, (WeightCategories)tempD.MaxWeigth, tempD.Battary, (DroneStatuses)tempD.StatusOfDrone, tempD.DroneLocation.ToString(), tempD.TheParcelInDelivery.ID);

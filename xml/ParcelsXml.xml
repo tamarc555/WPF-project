@@ -7,9 +7,9 @@
     <Weight>medium</Weight>
     <Priority>normal</Priority>
     <Requested>2022-01-11T18:29:41.3043038+02:00</Requested>
-    <Scheduled xsi:nil="true" />
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
+    <Scheduled>2022-01-16T13:26:30.8489278+02:00</Scheduled>
+    <PickedUp>2022-01-16T13:26:33.9035098+02:00</PickedUp>
+    <Delivered>2022-01-16T13:26:36.9537435+02:00</Delivered>
     <DroneId>0</DroneId>
   </Parcel>
   <Parcel>
@@ -19,10 +19,10 @@
     <Weight>medium</Weight>
     <Priority>emergency</Priority>
     <Requested>2022-01-11T18:31:05.1390657+02:00</Requested>
-    <Scheduled xsi:nil="true" />
-    <PickedUp xsi:nil="true" />
+    <Scheduled>2022-01-16T13:21:36.7627797+02:00</Scheduled>
+    <PickedUp>2022-01-16T13:21:39.7526041+02:00</PickedUp>
     <Delivered xsi:nil="true" />
-    <DroneId>0</DroneId>
+    <DroneId>3</DroneId>
   </Parcel>
   <Parcel>
     <ID>4</ID>
@@ -55,10 +55,10 @@
     <Weight>light</Weight>
     <Priority>fast</Priority>
     <Requested>2022-01-11T20:28:07.7611945+02:00</Requested>
-    <Scheduled xsi:nil="true" />
-    <PickedUp xsi:nil="true" />
+    <Scheduled>2022-01-16T13:23:07.9232382+02:00</Scheduled>
+    <PickedUp>2022-01-16T13:23:10.9507825+02:00</PickedUp>
     <Delivered xsi:nil="true" />
-    <DroneId>0</DroneId>
+    <DroneId>2</DroneId>
   </Parcel>
   <Parcel>
     <ID>7</ID>
@@ -67,9 +67,9 @@
     <Weight>medium</Weight>
     <Priority>fast</Priority>
     <Requested>2022-01-11T20:28:07.7611945+02:00</Requested>
-    <Scheduled xsi:nil="true" />
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
+    <Scheduled>2022-01-16T13:25:53.5562913+02:00</Scheduled>
+    <PickedUp>2022-01-16T13:25:56.6040235+02:00</PickedUp>
+    <Delivered>2022-01-16T13:25:59.6699292+02:00</Delivered>
     <DroneId>0</DroneId>
   </Parcel>
   <Parcel>
@@ -91,9 +91,9 @@
     <Weight>medium</Weight>
     <Priority>fast</Priority>
     <Requested>2022-01-11T20:28:07.7611945+02:00</Requested>
-    <Scheduled xsi:nil="true" />
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
+    <Scheduled>2022-01-16T13:26:02.9541852+02:00</Scheduled>
+    <PickedUp>2022-01-16T13:26:05.9974495+02:00</PickedUp>
+    <Delivered>2022-01-16T13:26:09.0550558+02:00</Delivered>
     <DroneId>0</DroneId>
   </Parcel>
   <Parcel>
@@ -103,9 +103,9 @@
     <Weight>light</Weight>
     <Priority>fast</Priority>
     <Requested>2022-01-11T20:28:07.7611945+02:00</Requested>
-    <Scheduled xsi:nil="true" />
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
+    <Scheduled>2022-01-16T13:26:12.2951469+02:00</Scheduled>
+    <PickedUp>2022-01-16T13:26:15.3396594+02:00</PickedUp>
+    <Delivered>2022-01-16T13:26:18.4071119+02:00</Delivered>
     <DroneId>0</DroneId>
   </Parcel>
   <Parcel>
@@ -115,9 +115,9 @@
     <Weight>light</Weight>
     <Priority>fast</Priority>
     <Requested>2022-01-13T08:58:58.9752667+02:00</Requested>
-    <Scheduled xsi:nil="true" />
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
+    <Scheduled>2022-01-16T13:26:21.5988308+02:00</Scheduled>
+    <PickedUp>2022-01-16T13:26:24.652627+02:00</PickedUp>
+    <Delivered>2022-01-16T13:26:27.7025601+02:00</Delivered>
     <DroneId>0</DroneId>
   </Parcel>
   <Parcel>
@@ -127,21 +127,9 @@
     <Weight>light</Weight>
     <Priority>fast</Priority>
     <Requested>2022-01-13T11:39:36.7794422+02:00</Requested>
-    <Scheduled xsi:nil="true" />
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
-    <DroneId>0</DroneId>
-  </Parcel>
-  <Parcel>
-    <ID>16</ID>
-    <SenderID>211526298</SenderID>
-    <TargetID>211487152</TargetID>
-    <Weight>light</Weight>
-    <Priority>normal</Priority>
-    <Requested>2022-01-13T18:12:59.4419595+02:00</Requested>
-    <Scheduled xsi:nil="true" />
-    <PickedUp xsi:nil="true" />
-    <Delivered xsi:nil="true" />
+    <Scheduled>2022-01-16T13:22:58.6437557+02:00</Scheduled>
+    <PickedUp>2022-01-16T13:23:01.686586+02:00</PickedUp>
+    <Delivered>2022-01-16T13:23:04.7272933+02:00</Delivered>
     <DroneId>0</DroneId>
   </Parcel>
 </ArrayOfParcel>
