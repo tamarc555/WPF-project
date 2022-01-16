@@ -265,10 +265,93 @@ namespace PL
             Worker.RunWorkerCompleted += Worker_RunWorkerCompleted;
             Worker.RunWorkerAsync(int.Parse(iDTextBox.Text));
         }
+       // static bool myCheakStop = true;
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
         {
-            bl.startDroneSimulator((int)e.Argument, updateDrone, checkStop);
+            //bl.startDroneSimulator((int)e.Argument, updateDrone, checkStop);
+            var myDrone = bl.getDrone(myWindowDrone.ID);
+            double timeInC = 0;
+            int parcelID = 0;
+            int stationID = 0;
+            bool flag = true;
+
+            do
+            {
+
+                switch (myDrone.StatusOfDrone)
+                {
+                    case BO.Enum.DroneStatuses.available:
+                        lock (bl)
+                        {
+                            parcelID = bl.nextParcel(myDrone);
+                            switch (parcelID, myDrone.Battary)
+                            {
+                                case (0, 100):  //שוחרר מטעינה אבל אין חבילה
+                                                //סיום תהליכון כפוי
+                                    flag = false;
+                                    break;
+                                case (0, _):  //פנוי ואין חבילה - שליחה לטעינה
+                                    stationID = bl.findClosestStation(myDrone);
+                                    if (stationID != -1)
+                                    {
+                                        bl.sendToCharge(bl.getDrone(myDrone.ID));
+                                    }
+                                    break;
+                                case (_, _): //שויכה חבילה - שליחה
+                                    bl.updateScheduled(bl.getDrone(myDrone.ID));
+                                    break;
+                            }
+                        }
+                        break;
+                    case BO.Enum.DroneStatuses.scheduled:
+                        lock (bl)
+                        {
+                            //  Thread.Sleep(1000);
+                            bl.updatePickedUp(bl.getDrone(myDrone.ID));
+                            break;
+                        }
+                    case BO.Enum.DroneStatuses.maintenance:
+                        lock (bl)
+                        {
+                            //  Thread.Sleep(1000);
+                            bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
+                            switch (myWindowDrone.Battary)
+                            {
+                                case (2):  //הרחפן טעון- שחרור
+                                    bl.releaseFromCharge(bl.getDrone(myDrone.ID), 2);
+                                    break;
+                                case (_):  //הרחפן לא הגיע ל100%
+                                    timeInC += 0.5;
+                                    break;
+                            }
+                        }
+                        break;
+                    case BO.Enum.DroneStatuses.delivery:
+                        lock (bl)
+                        {
+                            switch (myDrone.TheParcelInDelivery.StatusOfParcel)
+                            {
+                                case (false):  //החבילה עוד לא נאספה
+                                    bl.updatePickedUp(bl.getDrone(myDrone.ID));
+                                    break;
+                                case (true):  //החבילה נאספה והיא בדרך
+                                    bl.updateSupply(bl.getDrone(myDrone.ID));
+                                    break;
+                            }
+                        }
+                        break;
+                    default:
+                        throw new Exception("ERROR");
+                }
+                Thread.Sleep(1000);
+                updateDroneView(myDrone);
+
+                Thread.Sleep(1000);
+                 myDrone = bl.getDrone(myDrone.ID);
+                Thread.Sleep(1000);
+
+            } while (flag&& Auto&& !checkStop());
         }
 
         private void manualButton_Click(object sender, RoutedEventArgs e)

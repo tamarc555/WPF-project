@@ -22,6 +22,7 @@ namespace BlApi
 
         public IEnumerable<Station> getAvailableStations();
 
+        public int findClosestStation(Drone myDrone);
 
 
 
@@ -56,6 +57,8 @@ namespace BlApi
 
         //public IEnumerable<Parcel> getPartOfParcel(Predicate<Parcel> parcelCondition);
         public void deleteParcel(int tempParcelID);
+        public int nextParcel(Drone drone);
+
 
 
 
